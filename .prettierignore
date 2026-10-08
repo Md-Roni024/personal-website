@@ -4,3 +4,5 @@ package-lock.json
 next-env.d.ts
 docs/archive
 *.md
+# Prettier mangles MDX v3 syntax (e.g. multi-line {/* */} comments)
+*.mdx

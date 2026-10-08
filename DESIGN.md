@@ -70,13 +70,15 @@ The site should read like a well-set publication about a person, not a product l
 
 **Buttons** — Few. Primary (solid foreground/accent) and secondary (border or text). Used for main calls to action (e.g. View CV, Explore work). Real `<button>` for actions, `<a>` for navigation.
 
+**Icons** — Lucide, `aria-hidden`, always next to a text label: external-link arrow, download, previous/next arrows. Never icon-only controls.
+
 **Cards** — Used sparingly. Project listings may use a card-like block (title, one-line summary, category, year, tech) but prefer open layouts with rules over enclosed boxes. Do not make every project identical in visual weight; featured projects may get more space.
 
 **Section heading** — Small label/eyebrow (optional, mono or small caps) + heading + optional one-line intro. One `h1` per page; sections use `h2`, items `h3`.
 
 **Tags** — Plain text or very light outline; no coloured pills per technology.
 
-**Navigation** — Minimal top bar: name (home link) left, ≤6 items + CV right. Mobile: a single “Menu” button opening a full-width panel; focus trapped while open, `Esc` closes, focus returns to the button. Sticky header optional — only if it stays unobtrusive.
+**Navigation** — Minimal top bar: name (home link) left, ≤6 items + CV right. Below `lg` (1024px): a single “Menu” button opening a full-screen native `<dialog>`; focus contained while open, `Esc` closes, focus returns to the button. The full nav switches on at `lg` because the name plus seven items do not fit at tablet width. Not sticky.
 
 **Footer** — Quiet: name, short line, contact/social links, CV. No sitemap mega-footer.
 
@@ -90,7 +92,7 @@ The site should read like a well-set publication about a person, not a product l
 - Subtle and functional: short fades/translates (150–300ms, ease-out) on hover, menu open, and optional on-scroll reveal of sections.
 - No animated text, parallax, particles, or autoplaying media.
 - Everything respects `prefers-reduced-motion: reduce` (disable non-essential motion).
-- Prefer CSS transitions; add Motion only when CSS cannot do the job cleanly.
+- Prefer CSS transitions; add Motion only when CSS cannot do the job cleanly. Current state: CSS only (colour transitions, icon nudge on hover) — Motion is not installed.
 
 ## 9. Responsive rules
 
