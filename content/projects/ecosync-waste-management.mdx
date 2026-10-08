@@ -1,19 +1,54 @@
-{/* Source: previous portfolio. TODO: confirm category; expand with Problem, Approach, My contribution, Challenges and Outcome. */}
+{/* Sources: previous portfolio and CV. TODO: confirm category. */}
 
 export const metadata = {
   title: "EcoSync – Waste Management System",
   summary: "A waste management system for DNCC covering waste transport, collection, landfill, workers, managers and billing.",
   category: "Personal",
+  platform: "Web app",
   year: "May 2024",
   technologies: ["React.js","Node.js","Express.js","MongoDB","JWT","HTML","CSS"],
-  image: "https://raw.githubusercontent.com/Md-Roni024/EcoSync-Waste-Management-System/master/waste_mange.svg",
+  image: "/projects/ecosync-waste-management/cover.svg",
   featured: true,
   order: 1,
-  links: [{ label: "GitHub", href: "https://github.com/Md-Roni024/EcoSync-Waste-Management-System" }],
+  links: [
+    { label: "GitHub", href: "https://github.com/Md-Roni024/EcoSync-Waste-Management-System" },
+    { label: "Project video", href: "https://youtu.be/3rwoWyUXLdY" },
+  ],
 };
 
 ## Overview
 
-A waste management system for DNCC covering waste transport, collection, landfill, workers, managers and billing. Built in the final round of Code Samurai Hackathon 2024, where my team ‘BSMRSTU_PREFECT_NUMBER’ developed and implemented the project.
+EcoSync is a waste management system for the Dhaka North City Corporation (DNCC). It covers the whole flow of city waste — transport, collection, landfill operations, workers, managers and billing — in one web application. My team ‘BSMRSTU_PREFECT_NUMBER’ built it in the final round of **Code Samurai Hackathon 2024**, where we were one of 42 teams selected. The hackathon was hosted by Dhaka University with BJIT.
 
-**Type:** Web app
+{/* Overview and My contribution are from the previous portfolio and CV. DRAFT: Problem, Approach, Challenges, Outcome and Lessons are drafted — verify. */}
+
+## Problem
+
+City waste management involves many moving parts — vehicles, collection points, landfill sites, workers and payments — and they are hard to coordinate without one shared system. The hackathon challenge was to digitise this flow for DNCC.
+
+## My contribution
+
+- Built a full-stack system with modules for waste transport, collection, landfill management, worker and manager dashboards, and billing.
+- Implemented secure authentication and **role-based access control** using JWT tokens.
+- Developed an interactive, responsive UI in React.js with a component-based architecture.
+
+## Approach & architecture
+
+- **Frontend:** React.js single-page application for the different user roles.
+- **Backend:** Node.js and Express.js REST API.
+- **Database:** MongoDB for vehicles, sites, workers, schedules and billing data.
+- **Auth:** JWT-based authentication with role-based access.
+
+## Challenges
+
+- Modelling many related entities — vehicles, routes, sites, workers, bills — in a way that stayed simple enough to build in hackathon time.
+- Designing role-based access so each user type sees the right data.
+- Coordinating work across the team and integrating frontend and backend quickly.
+
+## Outcome
+
+A working end-to-end system demonstrated in the final round of Code Samurai Hackathon 2024.
+
+## Lessons learned
+
+Scoping is everything under time pressure: agree on the data model and API contract early, then build in parallel.

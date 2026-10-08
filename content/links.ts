@@ -28,6 +28,11 @@ export const links: readonly ProfileLink[] = [
     detail: "Roni24",
   },
   {
+    label: "Medium",
+    href: "https://medium.com/@roni.cse024",
+    detail: "@roni.cse024",
+  },
+  {
     label: "YouTube",
     href: "https://www.youtube.com/@ronihossain7428",
     detail: "@ronihossain7428",

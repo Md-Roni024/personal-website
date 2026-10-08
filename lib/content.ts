@@ -96,10 +96,20 @@ export const projectCategories = [
 
 export type ProjectCategory = (typeof projectCategories)[number];
 
+/** What kind of thing the project is — drives the filter on /projects. */
+export const projectPlatforms = [
+  "Web app",
+  "Android app",
+  "Machine learning",
+] as const;
+
+export type ProjectPlatform = (typeof projectPlatforms)[number];
+
 export type ProjectMeta = {
   title: string;
   summary: string;
   category: ProjectCategory;
+  platform?: ProjectPlatform;
   year: string;
   technologies: readonly string[];
   /** Cover image: a path under /public or an https URL (host must be allowed in next.config.ts). */
@@ -226,6 +236,9 @@ export async function getProjects(): Promise<Project[]> {
         "technologies",
       ]);
       assertOneOf(file, "category", metadata.category, projectCategories);
+      if (metadata.platform !== undefined) {
+        assertOneOf(file, "platform", metadata.platform, projectPlatforms);
+      }
       return { ...(metadata as ProjectMeta), slug };
     }),
   );

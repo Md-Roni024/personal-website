@@ -5,7 +5,6 @@ import { getProfile } from "@/lib/content";
 import { createMetadata } from "@/lib/metadata";
 import { ExpertiseGrid } from "@/components/content/expertise-grid";
 import { ProfileFacts } from "@/components/content/profile-facts";
-import { StatsGrid } from "@/components/content/stats-grid";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
@@ -18,7 +17,7 @@ export const metadata = createMetadata({
 });
 
 export default function AboutPage() {
-  const { headline, photo } = getProfile();
+  const { headline, photo, currentFocus } = getProfile();
   return (
     <>
       <PageHeader eyebrow="About" title="About Me" intro={headline} />
@@ -47,7 +46,10 @@ export default function AboutPage() {
                 {siteConfig.title}
               </p>
             </div>
-            <ProfileFacts columns={1} className="relative mt-6" />
+            <ProfileFacts
+              withEmail
+              className="relative mt-6 border-t border-border pt-6"
+            />
             <div className="relative mt-6 grid gap-3">
               <ButtonLink href={siteConfig.cvPath}>Check Resume</ButtonLink>
               <ButtonLink href="/contact" variant="secondary">
@@ -62,15 +64,26 @@ export default function AboutPage() {
         </div>
       </Container>
 
-      <Section aria-labelledby="numbers-heading" tone="tint">
-        <SectionHeading
-          id="numbers-heading"
-          eyebrow="At a glance"
-          title="By the Numbers"
-          className="mb-12"
-        />
-        <StatsGrid className="mx-auto max-w-5xl lg:grid-cols-4" />
-      </Section>
+      {currentFocus.length > 0 && (
+        <Section aria-labelledby="focus-heading" tone="tint">
+          <SectionHeading
+            id="focus-heading"
+            eyebrow="Now"
+            title="Current Focus"
+            className="mb-12"
+          />
+          <ul className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+            {currentFocus.map((item) => (
+              <li key={item.title} className="reveal card p-6">
+                <p className="font-semibold text-white">{item.title}</p>
+                <p className="mt-2 text-sm/relaxed text-muted">
+                  {item.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
 
       <Section
         id="expertise"

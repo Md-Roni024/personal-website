@@ -22,7 +22,7 @@ export default function ExperiencePage() {
       />
       <Container className="pb-16 sm:pb-24">
         <ExperienceList entries={getExperience()} variant="full" />
-        <p className="mt-10 text-sm text-muted">
+        <p className="mt-12 text-center text-sm text-muted">
           A condensed version is available in my{" "}
           <TextLink href={siteConfig.cvPath}>CV</TextLink>.
         </p>

@@ -13,6 +13,7 @@ A content-driven personal website — not a SaaS app, not a generic portfolio te
 
 - Never invent personal information: experience, projects, achievements, education, research, skills, interests, publications, dates, links. Missing → `TODO:` placeholder or ask.
 - Real content comes from the owner's previous portfolio (https://roni-portfolio-ten.vercel.app/). Sections it does not cover (current focus, interests, beyond code, most of About, academic interests) still hold **DUMMY** data. For missing data, use **obviously fake dummy data** ("Your Name", "Sample Project", "Company Name", `20XX`, `example.com`) — never plausible-looking invented facts. Mark every dummy file/block with a `DUMMY` comment so it can be found with `grep -r DUMMY` and replaced.
+- When the owner explicitly asks for draft copy to verify later, it is allowed — mark every drafted line/block with a `DRAFT` comment (never visible on the site) so `grep -rn DRAFT content` lists everything to check. Base drafts on known facts (previous portfolio, PROJECT_PLAN.md themes, real profiles), not on invented specifics like metrics or employers.
 - Do not exaggerate expertise or responsibilities.
 - Keep the architecture simple. No database, auth, CMS, backend API, or state library without an explicit requirement.
 - Add a dependency only with a clear reason. In use: `lucide-react` (icons), `@vercel/analytics`. Deliberately not installed: shadcn/ui and Motion — CSS covers current needs; add them only for a concrete case CSS cannot handle cleanly.

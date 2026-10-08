@@ -1,14 +1,14 @@
-// Source: previous portfolio.
+// Sources: previous portfolio and CV.
 import type { EducationEntry } from "@/lib/content";
 
 export const education: readonly EducationEntry[] = [
   {
-    degree: "Bachelor of Engineering (Hons.), Computer Science",
-    institution:
-      "Bangabandhu Sheikh Mujibur Rahman Science & Technology University (BSMRSTU)",
+    degree: "B.Sc. in Computer Science and Engineering",
+    institution: "Gopalganj Science and Technology University (GSTU)",
     start: "Jan 2019",
     end: "Sep 2024",
-    summary: "Languages: C/C++, Java, Python, SQL.",
+    summary:
+      "Formerly Bangabandhu Sheikh Mujibur Rahman Science & Technology University (BSMRSTU). CGPA 3.28. Languages: C/C++, Java, Python, SQL.",
     coursework: [
       "Data Structures",
       "Algorithms",
@@ -39,9 +39,10 @@ export const education: readonly EducationEntry[] = [
   },
 ];
 
-// DUMMY: placeholder academic interests. Replace with your own, or set to [] to hide the block.
+// DRAFT: based on the ML projects and PROJECT_PLAN.md. Verify, or set to [] to hide the block.
 export const academicInterests: readonly string[] = [
-  "Academic interest one",
-  "Academic interest two",
-  "Academic interest three",
+  "Machine learning & computer vision",
+  "AI & agentic systems",
+  "Software engineering & architecture",
+  "Technology for agriculture",
 ];

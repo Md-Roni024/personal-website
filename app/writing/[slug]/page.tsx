@@ -67,15 +67,15 @@ export default async function PostPage({
         intro={post.summary}
       />
       <Container className="pb-16 sm:pb-24">
-        <div className="max-w-reading [&>p:first-child]:mt-0">
+        <div className="mx-auto max-w-reading [&>p:first-child]:mt-0">
           <Content />
         </div>
         {post.tags && post.tags.length > 0 && (
-          <div className="mt-12 max-w-reading border-t border-border pt-6">
+          <div className="mx-auto mt-12 max-w-reading border-t border-border pt-6">
             <TagList tags={post.tags} />
           </div>
         )}
-        <p className="mt-12">
+        <p className="mx-auto mt-12 max-w-reading">
           <Link
             href="/writing"
             className="inline-flex items-center gap-2 text-sm text-muted transition-colors duration-200 hover:text-foreground"

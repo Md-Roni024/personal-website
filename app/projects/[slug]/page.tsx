@@ -93,7 +93,7 @@ export default async function ProjectPage({
               alt={`${project.title} cover`}
               fill
               priority
-              unoptimized={project.image.startsWith("http")}
+              unoptimized={/\.svg$|^https?:/.test(project.image)}
               sizes="(min-width: 1024px) 896px, 100vw"
               className="object-contain p-10"
             />

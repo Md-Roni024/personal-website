@@ -169,6 +169,15 @@
   }
 }
 
+@keyframes rise {
+  from {
+    transform: translateY(0.5rem);
+  }
+  to {
+    transform: none;
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -189,9 +198,12 @@
     }
   }
 
-  /* Entrance on load — kept short so navigation never feels delayed. */
+  /*
+   * Entrance on load — kept short so navigation never feels delayed. Slide only, no opacity:
+   * starting invisible would delay Largest Contentful Paint (the hero text is the LCP element).
+   */
   .enter {
-    animation: fade-in 400ms ease-out both;
+    animation: rise 400ms ease-out both;
   }
   .enter-delay-1 {
     animation-delay: 50ms;

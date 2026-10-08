@@ -3,46 +3,38 @@ import type { LucideIcon } from "lucide-react";
 import { getEducation, getExperience, getProfileLinks } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-type Fact = {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-  detail?: string;
-  href?: string;
-};
+type Fact = { icon: LucideIcon; label: string; value: string; href?: string };
 
-/** Key facts derived from content (current role, degree, location, email) — nothing is hard-coded here. */
-function getFacts(): Fact[] {
+/** Key facts derived from content (current role, degree, location, optionally email) — nothing is hard-coded. */
+function getFacts(withEmail: boolean): Fact[] {
   const facts: Fact[] = [];
   const current = getExperience().find((entry) => !entry.end);
   if (current) {
     facts.push({
       icon: Briefcase,
-      label: "Currently",
+      label: "Current role",
       value: current.role
         ? `${current.role} at ${current.organization}`
         : current.organization,
-      detail: `Since ${current.start}`,
     });
   }
   const degree = getEducation()[0];
   if (degree) {
-    // Prefer the abbreviation in parentheses, e.g. "… University (BSMRSTU)" → "BSMRSTU".
+    // Prefer the abbreviation in parentheses, e.g. "… University (GSTU)" → "GSTU".
     const shortName =
       degree.institution.match(/\(([^)]+)\)\s*$/)?.[1] ?? degree.institution;
     facts.push({
       icon: GraduationCap,
       label: "Education",
-      value: degree.degree,
-      detail: shortName,
+      value: `${degree.degree}, ${shortName}`,
     });
   }
   if (current?.location) {
     facts.push({ icon: MapPin, label: "Location", value: current.location });
   }
-  const email = getProfileLinks().find((link) =>
-    link.href.startsWith("mailto:"),
-  );
+  const email =
+    withEmail &&
+    getProfileLinks().find((link) => link.href.startsWith("mailto:"));
   if (email) {
     facts.push({
       icon: Mail,
@@ -54,44 +46,31 @@ function getFacts(): Fact[] {
   return facts;
 }
 
+/** A quiet icon list of key facts. */
 export function ProfileFacts({
-  columns = 2,
+  withEmail = false,
   className,
 }: {
-  columns?: 1 | 2;
+  withEmail?: boolean;
   className?: string;
 }) {
   return (
-    <dl
-      className={cn("grid gap-4", columns === 2 && "sm:grid-cols-2", className)}
-    >
-      {getFacts().map(({ icon: Icon, label, value, detail, href }) => (
-        <div
-          key={label}
-          className="flex items-start gap-3 rounded-xl border border-border bg-surface-raised/60 p-4 transition-colors duration-300 hover:border-primary/60"
-        >
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/15 text-accent">
-            <Icon aria-hidden="true" className="size-5" />
-          </span>
-          <div className="min-w-0">
-            <dt className="text-xs font-semibold tracking-wide text-subtle uppercase">
-              {label}
-            </dt>
-            <dd className="mt-1 text-sm/snug font-medium break-words text-white">
-              {href ? (
-                <a href={href} className="transition-colors hover:text-accent">
-                  {value}
-                </a>
-              ) : (
-                value
-              )}
-              {detail && (
-                <span className="mt-0.5 block text-xs text-muted">
-                  {detail}
-                </span>
-              )}
-            </dd>
-          </div>
+    <dl className={cn("space-y-3", className)}>
+      {getFacts(withEmail).map(({ icon: Icon, label, value, href }) => (
+        <div key={label} className="flex items-center gap-3">
+          <dt className="flex shrink-0 items-center">
+            <Icon aria-hidden="true" className="size-5 text-accent" />
+            <span className="sr-only">{label}</span>
+          </dt>
+          <dd className="min-w-0 text-sm break-words text-foreground sm:text-base">
+            {href ? (
+              <a href={href} className="transition-colors hover:text-accent">
+                {value}
+              </a>
+            ) : (
+              value
+            )}
+          </dd>
         </div>
       ))}
     </dl>

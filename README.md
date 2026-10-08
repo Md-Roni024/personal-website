@@ -21,12 +21,21 @@ npm run build
 npm run check      # all of the above
 ```
 
+## Auditing a production build while `npm run dev` is running
+
+Building into `.next` while the dev server runs can confuse it. Build into a separate folder instead:
+
+```bash
+NEXT_DIST_DIR=.next-audit npm run build
+NEXT_DIST_DIR=.next-audit npx next start -p 3124
+```
+
 ## Content
 
 Content comes from the previous portfolio. Remaining placeholders and gaps:
 
 ```bash
-grep -rnE "DUMMY|TODO" content site.config.ts
+grep -rnE "DUMMY|DRAFT|TODO" content site.config.ts
 ```
 
 See `content/README.md` for where each piece lives and how to add projects and posts.

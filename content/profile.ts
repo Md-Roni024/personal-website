@@ -1,29 +1,33 @@
 import type { Profile } from "@/lib/content";
 
 export const profile: Profile = {
-  // Source: previous portfolio.
-  roles: ["Web Developer", "Programmer"],
+  // DRAFT: "Software Engineer" added per owner; the other two are from the previous portfolio.
+  roles: ["Software Engineer", "Web Developer", "Programmer"],
+  // DRAFT: positioning statement based on the current role and listed skills. Verify wording.
   headline:
-    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning, I am dedicated to delivering high-quality results.",
+    "Software Engineer at BJIT Limited, building web and cross-platform applications with Angular, TypeScript and Node.js — and exploring AI agents and developer tools.",
   photo: "/images/profile.jpg",
+  // DRAFT: drafted from the CV and the current role. Verify wording.
   introduction: [
-    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning, I am dedicated to delivering high-quality results.",
-    "With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
+    "I am a software engineer who enjoys turning real problems into reliable, well-structured software. Day to day I build web applications with Angular and TypeScript, integrate REST APIs, and work in agile teams from requirements to release.",
+    "Before that I built cross-platform iOS and web apps with Angular and Ionic at ImpleVista, and worked on web, Android and machine-learning projects. I am currently exploring AI agents, MCP and software architecture.",
   ],
-  // DUMMY: placeholder current focus. Replace with what you are actually focused on now.
+  // DRAFT: themes from PROJECT_PLAN.md and the current role. Replace with what you are actually focused on.
   currentFocus: [
     {
-      title: "Focus area one",
+      title: "Production web apps",
       description:
-        "One sentence describing something you are actively working on right now.",
+        "Building and maintaining Angular and TypeScript applications at BJIT, with clean APIs and maintainable code.",
     },
     {
-      title: "Focus area two",
-      description: "One sentence describing a second current focus.",
+      title: "AI agents & MCP",
+      description:
+        "Learning how AI agents, agentic workflows and the Model Context Protocol can power better developer tools.",
     },
     {
-      title: "Focus area three",
-      description: "One sentence describing a third current focus.",
+      title: "Software architecture",
+      description:
+        "Studying system design and architecture patterns to build software that scales and stays easy to change.",
     },
   ],
 };

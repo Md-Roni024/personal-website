@@ -1,11 +1,33 @@
-// Source: previous portfolio. Most recent first.
-// TODO: job titles are not on the previous site — add `role` to each entry.
+// Most recent first. Sources: previous portfolio and CV (Drive). Entries marked DRAFT are not verified.
 import type { ExperienceEntry } from "@/lib/content";
 
 export const experience: readonly ExperienceEntry[] = [
+  // DRAFT: current role per owner ("Software Engineer at BJIT Ltd."). Start date unknown (20XX); highlights drafted.
+  {
+    organization: "BJIT Limited",
+    role: "Software Engineer",
+    start: "20XX",
+    location: "Dhaka, Bangladesh",
+    highlights: [
+      "Build and maintain web applications with Angular and TypeScript, integrating REST APIs.",
+      "Work in an agile Scrum team across the full software development life cycle, from requirements to release.",
+      "Take part in code reviews and use Git/Gerrit for version control.",
+    ],
+    technologies: [
+      "Angular",
+      "TypeScript",
+      "REST API",
+      "Git",
+      "Gerrit",
+      "Scrum",
+    ],
+  },
+  // Source: CV. DRAFT: end date (20XX) — the CV says "Present", but the owner now works at BJIT.
   {
     organization: "ImpleVista BD Ltd.",
+    role: "Junior Software Engineer",
     start: "Mar 2025",
+    end: "20XX",
     location: "Dhaka, Bangladesh",
     highlights: [
       "Developed and maintained software solutions using Angular, Node.js, REST API, Firebase and Git.",
@@ -24,8 +46,10 @@ export const experience: readonly ExperienceEntry[] = [
       "Git",
     ],
   },
+  // Source: CV.
   {
     organization: "BJIT Limited",
+    role: "Intern Software Engineer",
     start: "Sep 2024",
     end: "Dec 2024",
     location: "Dhaka, Bangladesh",
@@ -35,6 +59,7 @@ export const experience: readonly ExperienceEntry[] = [
     ],
     technologies: ["TypeScript", "Angular", "REST API", "Git", "Gerrit"],
   },
+  // Source: previous portfolio. TODO: add the organisation and your role.
   {
     organization: "Industrial Attachment",
     start: "Apr 2023",

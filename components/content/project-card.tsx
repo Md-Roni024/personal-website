@@ -25,8 +25,8 @@ export function ProjectCard({
             src={project.image}
             alt=""
             fill
-            // Remote project images are mostly SVG logos; serve them as-is.
-            unoptimized={project.image.startsWith("http")}
+            // SVG logos and remote images are served as-is (the optimiser only handles local rasters).
+            unoptimized={/\.svg$|^https?:/.test(project.image)}
             sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
             className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
           />

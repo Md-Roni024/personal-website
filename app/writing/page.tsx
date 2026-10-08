@@ -23,9 +23,9 @@ export default async function WritingPage() {
       />
       <Container className="pb-16 sm:pb-24">
         {posts.length === 0 ? (
-          <p className="text-muted">Nothing published yet.</p>
+          <p className="text-center text-muted">Nothing published yet.</p>
         ) : (
-          <ol className="divide-y divide-border border-y border-border">
+          <ol className="mx-auto max-w-4xl divide-y divide-border border-y border-border">
             {posts.map((post) => (
               <li key={post.slug}>
                 <article className="group relative grid gap-2 py-8 sm:grid-cols-[10rem_1fr] sm:gap-6">

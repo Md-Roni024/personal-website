@@ -1,0 +1,36 @@
+{/* DRAFT: drafted from the EcoSync project facts (previous portfolio and CV). Verify the details, add your own experience, and set the real publish date. */}
+
+export const metadata = {
+  title: "Building EcoSync at Code Samurai Hackathon 2024",
+  summary: "What I learned building a full-stack waste management system for Dhaka North City Corporation in a hackathon final.",
+  date: "2026-10-08",
+  category: "Retrospective",
+  tags: ["Hackathon", "React.js", "Node.js", "MongoDB", "JWT"],
+};
+
+In May 2024 my team, ‘BSMRSTU_PREFECT_NUMBER’, was one of 42 teams selected for the final round of **Code Samurai Hackathon 2024**, hosted by Dhaka University with BJIT. The challenge was a real one: build a waste management system for the Dhaka North City Corporation (DNCC). Our answer was **EcoSync**.
+
+## The problem
+
+City waste management has many moving parts — vehicles, collection points, landfill sites, workers, managers and payments. Without one shared system they are hard to coordinate. We set out to bring waste transport, collection, landfill management, worker and manager dashboards and billing into a single web application.
+
+## What we built
+
+- A **React.js** frontend with a component-based architecture and a responsive UI.
+- A **Node.js and Express.js** REST API.
+- **MongoDB** for vehicles, sites, workers and billing data.
+- Secure authentication and **role-based access control** with JWT, so every user sees only what their role allows.
+
+## What I learned
+
+**Agree on the data model first.** With so many related entities, the fastest way to move was to settle the data model and API contract early. After that, frontend and backend work could happen in parallel.
+
+**Access control is a design decision, not an afterthought.** Different roles see very different parts of the system. Designing roles and permissions up front kept the UI and API consistent.
+
+**Scope ruthlessly.** In a hackathon, a smaller system that works end to end beats a bigger one that doesn't. We focused on the flows that mattered most and made them solid.
+
+## Links
+
+- [Source code on GitHub](https://github.com/Md-Roni024/EcoSync-Waste-Management-System)
+- [Project video](https://youtu.be/3rwoWyUXLdY)
+- [EcoSync project page](/projects/ecosync-waste-management)

@@ -2,9 +2,10 @@
 
 export const siteConfig = {
   name: "Md. Roni",
-  title: "Web Developer & Programmer",
+  // DRAFT: current title per owner.
+  title: "Software Engineer",
   description:
-    "Md. Roni — web developer and programmer. Projects, experience, education and certifications.",
+    "Md. Roni — Software Engineer at BJIT Limited. Projects, experience, education and certifications.",
   // Set NEXT_PUBLIC_SITE_URL once the domain is decided.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "en",
