@@ -1,14 +1,25 @@
-import { Section, SectionHeading } from "@/components/ui/section";
+import { AcademicPreview } from "@/components/sections/academic-preview";
+import { BeyondCode } from "@/components/sections/beyond-code";
+import { Contact } from "@/components/sections/contact";
+import { ExperiencePreview } from "@/components/sections/experience-preview";
+import { Expertise } from "@/components/sections/expertise";
+import { FeaturedProjects } from "@/components/sections/featured-projects";
+import { Hero } from "@/components/sections/hero";
+import { Interests } from "@/components/sections/interests";
+import { Introduction } from "@/components/sections/introduction";
 
-// Temporary placeholder. The homepage is built in Phase 4.
 export default function Home() {
   return (
-    <Section>
-      <SectionHeading
-        level={1}
-        title="Homepage coming soon"
-        intro="The global layout is in place. Homepage sections are built in the next phase."
-      />
-    </Section>
+    <>
+      <Hero />
+      <Introduction />
+      <ExperiencePreview />
+      <FeaturedProjects />
+      <Expertise />
+      <AcademicPreview />
+      <Interests />
+      <BeyondCode />
+      <Contact />
+    </>
   );
 }
