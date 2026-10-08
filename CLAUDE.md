@@ -12,6 +12,7 @@ A content-driven personal website — not a SaaS app, not a generic portfolio te
 ## Hard rules
 
 - Never invent personal information: experience, projects, achievements, education, research, skills, interests, publications, dates, links. Missing → `TODO:` placeholder or ask.
+- Until the owner supplies real data, build with **obviously fake dummy data** ("Your Name", "Sample Project", "Company Name", `20XX`, `example.com`) — never plausible-looking invented facts. Mark every dummy file/block with a `DUMMY` comment so it can be found with `grep -r DUMMY` and replaced.
 - Do not exaggerate expertise or responsibilities.
 - Keep the architecture simple. No database, auth, CMS, backend API, or state library without an explicit requirement.
 - Add a dependency only with a clear reason. Lucide, shadcn/ui components, Motion and Vercel Analytics are added when a phase actually needs them.
@@ -27,7 +28,8 @@ A content-driven personal website — not a SaaS app, not a generic portfolio te
   - Structured records (experience, education, expertise, interests, links) → typed `.ts` files in `content/`.
   - Routes read content only through `lib/content.ts`.
 - Site identity, nav, site URL and CV path live in `site.config.ts`.
-- Components: `components/layout` (header, nav, footer, container), `components/sections` (homepage sections), `components/content` (content renderers), `components/ui` (primitives).
+- Components: `components/layout` (header, nav, footer), `components/sections` (homepage sections), `components/content` (content renderers), `components/ui` (primitives: `Container`, `Section`, `SectionHeading`, `Eyebrow`, `Button`, `ButtonLink`, `TextLink`, `Card`, `Tag`, `TagList`). Reuse these before writing new styles.
+- MDX element styles live in `mdx-components.tsx`. `/design` is an internal, noindex preview of the design system.
 
 ## Quality
 

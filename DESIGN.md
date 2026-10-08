@@ -2,7 +2,7 @@
 
 The visual language for the site. Consult before building any UI. Derived from `PROJECT_PLAN.md` §22–25.
 
-> **Status:** Principles and rules below are settled. Items marked **[Decide]** are proposals awaiting the owner's confirmation at the start of Phase 2; until confirmed, do not hard-code them across components.
+> **Status:** Settled and implemented in Phase 2 (`app/globals.css`, `app/fonts.ts`, `components/ui/`). Live preview at `/design`. Typeface, palette and dark-mode choices were made with recommended defaults and can be revised by the owner — change the tokens, not individual components.
 
 ## 1. Character
 
@@ -14,29 +14,45 @@ The site should read like a well-set publication about a person, not a product l
 
 - Typography is the primary design element. Hierarchy comes from size, weight and spacing — not colour or boxes.
 - Fonts loaded with `next/font` (self-hosted, no layout shift). Maximum two families plus a monospace.
-- Body text: 16–18px, line-height ~1.6, measure 60–75 characters (`max-w-prose` or equivalent).
+- Body text: 16–18px, line-height ~1.6, measure 60–75 characters (`max-w-reading`).
 - Headings: tight leading (1.1–1.25), slight negative tracking at large sizes. Hero heading scales fluidly with `clamp()`; never overflows at 375px.
 - Monospace only for genuinely technical details (dates, tech tags, metadata labels) — sparingly.
-- **[Decide]** Typeface pairing. Candidates:
-  1. Serif display + sans body — e.g. *Newsreader* or *Source Serif 4* headings, *Inter* body. Most editorial.
-  2. Single sans family — e.g. *Inter* or *Geist* throughout, hierarchy by weight. Most technical/neutral.
-  3. Sans display + serif body — e.g. *Geist* headings, *Source Serif 4* long-form. Good for writing-heavy pages.
+- Typefaces (`app/fonts.ts`):
+  - `font-serif` — **Newsreader**: page titles, section headings (`h1`/`h2`), pull quotes. Regular weight; let size do the work.
+  - `font-sans` — **Inter**: body text, UI, item headings (`h3`, semibold).
+  - `font-mono` — **JetBrains Mono**: eyebrows, dates, tags, code.
+- Scale: `text-display` (hero, fluid 40→72px), `text-title` (page `h1`, fluid 32→48px), `text-3xl`/`sm:text-4xl` (section `h2`), `text-lg` semibold (`h3`), `text-base`/`sm:text-lg` (body), `text-sm`/`text-xs` (meta).
+- Shared pieces: `SectionHeading` (eyebrow + heading + intro), `Eyebrow` (mono uppercase label).
 
 ## 3. Colour
 
 - Restrained: one neutral scale + one accent. The accent is used for links, focus rings and small highlights only.
 - All text meets WCAG AA (4.5:1 body, 3:1 large text and UI). Verify contrast when tokens are set.
 - Colours are defined once as CSS variables in `app/globals.css` and exposed via Tailwind `@theme`; components use tokens (`bg-background`, `text-muted`, …), never raw hex.
-- Planned tokens: `background`, `foreground`, `muted` (secondary text), `subtle` (tertiary/meta), `border`, `surface` (rare raised areas), `accent`, `accent-foreground`, `focus`.
-- **[Decide]** Neutral temperature (warm off-white/stone vs. cool white/zinc) and accent hue.
-- **[Decide]** Dark mode: (a) light only, (b) follow system via `prefers-color-scheme`, (c) system + toggle. Recommendation: (b) — no JS, no extra dependency.
+- Palette: warm neutrals + a deep green accent.
+
+| Token | Use | Light | Dark |
+|---|---|---|---|
+| `background` | page | `#faf9f7` | `#141311` |
+| `surface` | rare raised areas, code | `#f2f0ec` | `#1d1c19` |
+| `foreground` | primary text | `#1c1a17` (16.5:1) | `#ece9e4` (15.3:1) |
+| `muted` | secondary text | `#57534e` (7.3:1) | `#a8a29e` (7.4:1) |
+| `subtle` | metadata | `#6f6a64` (5.1:1) | `#8f8983` (5.4:1) |
+| `border` | hairlines | `#e4e1dc` | `#2c2a26` |
+| `border-strong` | hover/emphasis rules | `#c9c4bc` | `#46423c` |
+| `accent` | links on hover, focus ring, selection | `#2f5d43` (7.2:1) | `#8fbf9f` (9.0:1) |
+| `accent-foreground` | text on accent | `#ffffff` | `#141311` |
+
+  Ratios are against `background`; all text tokens also pass AA on `surface`. Re-check contrast whenever a token changes.
+- Dark mode follows the system via `prefers-color-scheme` — no toggle, no JS. A toggle can be added later if wanted.
+- Focus ring: 2px `accent` outline, 2px offset, on `:focus-visible` (global in `globals.css`).
 
 ## 4. Spacing & layout
 
 - Tailwind's default 4px scale; do not add arbitrary spacing values.
 - Generous vertical rhythm: sections separated by ~96–160px desktop, ~64–96px mobile.
 - Containers:
-  - `prose` — ~680px, long-form reading.
+  - `reading` — ~680px, long-form reading (`max-w-reading`).
   - `content` — ~1080px, default page width.
   - `wide` — ~1280px, rare (e.g. project media).
 - Horizontal page padding: 16px mobile → 24px tablet → 32px+ desktop.
