@@ -1,18 +1,14 @@
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { JetBrains_Mono, Poppins } from "next/font/google";
 
-export const inter = Inter({
+// Poppins is the typeface of the owner's existing portfolio. Not a variable font, so weights are listed.
+export const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-poppins",
   display: "swap",
 });
 
-export const newsreader = Newsreader({
-  subsets: ["latin"],
-  variable: "--font-newsreader",
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
+// Code blocks only.
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains-mono",

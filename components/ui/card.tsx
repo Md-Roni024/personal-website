@@ -1,20 +1,16 @@
 import type { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils";
 
-/**
- * Bordered block for the few places that need containment (e.g. project listings).
- * Prefer open layouts separated by rules — see DESIGN.md §6.
- */
-export function Card({
-  className,
-  ...props
-}: ComponentPropsWithoutRef<"article">) {
+type CardProps = ComponentPropsWithoutRef<"article"> & {
+  /** Lift and brighten the border on hover — for cards that are links or contain one. */
+  interactive?: boolean;
+};
+
+/** Dark panel with a thin purple border and soft shadow (the `card` utility in globals.css). */
+export function Card({ interactive = false, className, ...props }: CardProps) {
   return (
     <article
-      className={cn(
-        "rounded-md border border-border p-6 transition-colors duration-200 hover:border-border-strong",
-        className,
-      )}
+      className={cn("card p-6", interactive && "card-hover", className)}
       {...props}
     />
   );

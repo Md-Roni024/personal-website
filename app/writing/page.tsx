@@ -29,11 +29,11 @@ export default async function WritingPage() {
             {posts.map((post) => (
               <li key={post.slug}>
                 <article className="group relative grid gap-2 py-8 sm:grid-cols-[10rem_1fr] sm:gap-6">
-                  <p className="font-mono text-sm text-subtle">
+                  <p className="text-sm font-medium text-accent">
                     <time dateTime={post.date}>{formatDate(post.date)}</time>
                   </p>
                   <div>
-                    <h2 className="font-serif text-2xl/tight">
+                    <h2 className="text-2xl/tight font-semibold">
                       <Link
                         href={`/writing/${post.slug}`}
                         className="transition-colors duration-200 group-hover:text-accent after:absolute after:inset-0"
@@ -44,7 +44,7 @@ export default async function WritingPage() {
                     <p className="mt-2 max-w-reading text-muted">
                       {post.summary}
                     </p>
-                    <p className="mt-3 font-mono text-xs text-subtle">
+                    <p className="mt-3 text-xs text-subtle">
                       {post.category} · {post.readingMinutes} min read
                     </p>
                   </div>

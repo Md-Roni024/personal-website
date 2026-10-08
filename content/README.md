@@ -1,6 +1,6 @@
 # Content
 
-All personal content lives here, separate from UI components. Only add genuine information. Everything currently here is **DUMMY** placeholder data — find it all with `grep -r DUMMY content site.config.ts`.
+All personal content lives here, separate from UI components. Only add genuine information. Most content was taken from the previous portfolio; what remains placeholder is marked **DUMMY** (`grep -rn DUMMY content`) and gaps are marked **TODO** (`grep -rn TODO content`).
 
 | Content | Format | Location | Shown on |
 |---|---|---|---|
@@ -11,7 +11,8 @@ All personal content lives here, separate from UI components. Only add genuine i
 | Education, coursework, academic interests | TypeScript | `education.ts` | Home, Academic |
 | Expertise | TypeScript | `expertise.ts` | Home, About |
 | Current work, exploring, future interests, beyond code | TypeScript | `interests.ts` | Home, Research & Interests |
-| Contact / profile links | TypeScript | `links.ts` | Home, Contact, footer |
+| Contact / profile links | TypeScript | `links.ts` | Hero, Home, Contact, footer (icons matched by label) |
+| Certificates & achievements | TypeScript | `certifications.ts` | Home (first 3), Academic |
 | Project case studies | MDX, one per project | `projects/<slug>.mdx` → `/projects/<slug>` | Home (if `featured`), Projects, Academic (if Academic/Research) |
 | Articles / notes | MDX, one per post | `writing/<slug>.mdx` → `/writing/<slug>` | Writing |
 
@@ -46,4 +47,5 @@ Files starting with `_` are ignored by the site. Keep the `_template.mdx` files 
 ## Files
 
 - Images: `public/images/` (general), `public/projects/<slug>/` (project screenshots). Reference them in MDX as `/projects/<slug>/screenshot.png`.
-- CV: `public/documents/cv.pdf` (currently a DUMMY placeholder PDF).
+- CV: currently a Google Drive link (`cvPath` in `site.config.ts`). To self-host, add `public/documents/cv.pdf` and set `cvPath` to `/documents/cv.pdf`.
+- Portrait: `public/images/profile.jpg`.

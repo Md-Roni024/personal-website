@@ -50,7 +50,11 @@ export default function InterestsPage() {
         <ExploringList topics={exploring} />
       </Section>
 
-      <Section id="beyond-code" aria-labelledby="beyond-code-heading" divided>
+      <Section
+        id="beyond-code"
+        aria-labelledby="beyond-code-heading"
+        tone="tint"
+      >
         <SectionHeading
           id="beyond-code-heading"
           eyebrow="Beyond code"

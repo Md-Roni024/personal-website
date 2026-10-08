@@ -1,4 +1,5 @@
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -7,9 +8,9 @@ import {
   getProjectWithNeighbours,
 } from "@/lib/content";
 import { createMetadata } from "@/lib/metadata";
+import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
-import { Eyebrow } from "@/components/ui/section";
 import { TagList } from "@/components/ui/tag";
 
 export function generateStaticParams() {
@@ -44,7 +45,7 @@ export default async function ProjectPage({
         eyebrow={
           <Link
             href="/projects"
-            className="transition-colors duration-200 hover:text-foreground"
+            className="transition-colors duration-200 hover:text-white"
           >
             Projects
           </Link>
@@ -52,47 +53,53 @@ export default async function ProjectPage({
         title={project.title}
         intro={project.summary}
       >
-        <dl className="mt-12 grid gap-6 border-t border-border pt-6 text-sm sm:grid-cols-3">
+        <dl className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-x-10 gap-y-4 text-sm">
           <div>
-            <dt>
-              <Eyebrow>Category</Eyebrow>
-            </dt>
-            <dd className="mt-2">{project.category}</dd>
-          </div>
-          <div>
-            <dt>
-              <Eyebrow>Year</Eyebrow>
-            </dt>
-            <dd className="mt-2">{project.year}</dd>
-          </div>
-          <div>
-            <dt>
-              <Eyebrow>Technology</Eyebrow>
-            </dt>
-            <dd className="mt-2">
-              <TagList tags={project.technologies} />
+            <dt className="text-subtle">Category</dt>
+            <dd className="mt-1 font-semibold text-white">
+              {project.category}
             </dd>
           </div>
+          <div>
+            <dt className="text-subtle">Date</dt>
+            <dd className="mt-1 font-semibold text-white">{project.year}</dd>
+          </div>
         </dl>
+        <TagList
+          className="mx-auto mt-6 max-w-3xl justify-center"
+          tags={project.technologies}
+        />
         {project.links && project.links.length > 0 && (
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            {project.links.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="inline-flex items-center gap-1 underline decoration-border-strong underline-offset-4 hover:text-accent hover:decoration-accent"
-                >
-                  {link.label}
-                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
-                </a>
-              </li>
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            {project.links.map((link, index) => (
+              <ButtonLink
+                key={link.href}
+                href={link.href}
+                variant={index === 0 ? "primary" : "secondary"}
+              >
+                {link.label}
+                <ArrowUpRight aria-hidden="true" className="size-4" />
+              </ButtonLink>
             ))}
-          </ul>
+          </div>
         )}
       </PageHeader>
 
       <Container className="pb-16 sm:pb-24">
-        <div className="max-w-reading [&>h2:first-child]:mt-0">
+        {project.image && (
+          <div className="relative mx-auto mb-14 aspect-[16/9] max-w-4xl overflow-hidden card bg-white">
+            <Image
+              src={project.image}
+              alt={`${project.title} cover`}
+              fill
+              priority
+              unoptimized={project.image.startsWith("http")}
+              sizes="(min-width: 1024px) 896px, 100vw"
+              className="object-contain p-10"
+            />
+          </div>
+        )}
+        <div className="mx-auto max-w-reading [&>h2:first-child]:mt-0">
           <Content />
         </div>
       </Container>
@@ -101,7 +108,7 @@ export default async function ProjectPage({
         <Container>
           <nav
             aria-label="More projects"
-            className="grid gap-6 border-t border-border py-10 sm:grid-cols-2"
+            className="mx-auto grid max-w-4xl gap-6 border-t border-border py-12 sm:grid-cols-2"
           >
             {previous ? (
               <ProjectNavLink
@@ -146,7 +153,7 @@ function ProjectNavLink({
       className={`group block ${direction === "next" ? "sm:text-right" : ""}`}
     >
       <span
-        className={`flex items-center gap-2 font-mono text-xs tracking-widest text-subtle uppercase ${direction === "next" ? "sm:justify-end" : ""}`}
+        className={`flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-accent uppercase ${direction === "next" ? "sm:justify-end" : ""}`}
       >
         {direction === "previous" && (
           <Icon aria-hidden="true" className="size-3.5" />
@@ -156,7 +163,7 @@ function ProjectNavLink({
           <Icon aria-hidden="true" className="size-3.5" />
         )}
       </span>
-      <span className="mt-2 block font-serif text-xl transition-colors duration-200 group-hover:text-accent">
+      <span className="mt-2 block text-xl font-semibold transition-colors duration-200 group-hover:text-accent">
         {title}
       </span>
     </Link>

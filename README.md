@@ -21,15 +21,15 @@ npm run build
 npm run check      # all of the above
 ```
 
-## Replacing the dummy content
+## Content
 
-All current content is placeholder data marked `DUMMY`:
+Content comes from the previous portfolio. Remaining placeholders and gaps:
 
 ```bash
-grep -rn DUMMY content site.config.ts public
+grep -rnE "DUMMY|TODO" content site.config.ts
 ```
 
-See `content/README.md` for where each piece of content lives and how to add projects and posts. Also replace `public/documents/cv.pdf`.
+See `content/README.md` for where each piece lives and how to add projects and posts.
 
 ## Routes
 

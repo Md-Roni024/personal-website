@@ -1,14 +1,35 @@
-// DUMMY: placeholder expertise categories. Replace with technologies and capabilities you can genuinely discuss.
+// Source: previous portfolio ("Here are some of my skills on which I have been working").
 import type { ExpertiseCategory } from "@/lib/content";
 
 export const expertise: readonly ExpertiseCategory[] = [
-  { name: "Category One", items: ["Skill A", "Skill B", "Skill C", "Skill D"] },
-  { name: "Category Two", items: ["Skill E", "Skill F", "Skill G"] },
-  { name: "Category Three", items: ["Skill H", "Skill I", "Skill J"] },
   {
-    name: "Category Four",
-    items: ["Skill K", "Skill L", "Skill M", "Skill N"],
+    name: "Frontend",
+    items: [
+      "Angular",
+      "React.js",
+      "JavaScript",
+      "HTML",
+      "Tailwind CSS",
+      "Bootstrap",
+      "Material UI",
+      "Redux",
+    ],
   },
-  { name: "Category Five", items: ["Skill O", "Skill P"] },
-  { name: "Category Six", items: ["Skill Q", "Skill R", "Skill S"] },
+  {
+    name: "Backend",
+    items: ["Node.js", "Express.js", "TypeScript", "Flask", "Scrapy"],
+  },
+  { name: "Database", items: ["MySQL", "PostgreSQL", "MongoDB", "Firebase"] },
+  {
+    name: "Machine Learning",
+    items: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "scikit-learn",
+      "Jupyter",
+      "Google Colab",
+    ],
+  },
+  { name: "Tools", items: ["Git", "GitHub", "Docker", "Postman"] },
 ];

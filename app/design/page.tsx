@@ -15,23 +15,31 @@ export const metadata: Metadata = {
 const colors = [
   "background",
   "surface",
+  "surface-raised",
+  "tint",
   "foreground",
   "muted",
   "subtle",
   "border",
   "border-strong",
+  "primary",
   "accent",
+  "brand",
 ] as const;
 
 const swatchClass: Record<(typeof colors)[number], string> = {
   background: "bg-background",
   surface: "bg-surface",
+  "surface-raised": "bg-surface-raised",
+  tint: "bg-tint",
   foreground: "bg-foreground",
   muted: "bg-muted",
   subtle: "bg-subtle",
   border: "bg-border",
   "border-strong": "bg-border-strong",
+  primary: "bg-primary",
   accent: "bg-accent",
+  brand: "bg-brand",
 };
 
 export default function DesignPage() {
@@ -59,7 +67,7 @@ export default function DesignPage() {
         <SectionHeading
           eyebrow="Tokens"
           title="Colour"
-          intro="Restrained neutrals with one accent. Switch your system theme to preview dark mode."
+          intro="Dark navy with a purple accent and a violet-to-magenta brand gradient."
         />
         <ul className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4">
           {colors.map((name) => (

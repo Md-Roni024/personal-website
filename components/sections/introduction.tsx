@@ -1,34 +1,35 @@
 import { getProfile } from "@/lib/content";
-import { SplitSection } from "./split-section";
+import { HomeSection } from "./home-section";
 
 export function Introduction() {
   const { introduction, currentFocus } = getProfile();
   return (
-    <SplitSection
-      id="introduction"
-      eyebrow="Introduction"
-      title="In brief"
+    <HomeSection
+      id="about"
+      eyebrow="About"
+      title="About Me"
       more={{ href: "/about", label: "More about me" }}
     >
-      <div className="max-w-reading space-y-5 text-lg/relaxed">
+      <div className="reveal mx-auto max-w-3xl space-y-5 text-center text-lg/relaxed text-muted">
         {introduction.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
       </div>
 
-      <h3 className="mt-14 font-mono text-xs tracking-widest text-subtle uppercase">
+      <h3 className="reveal mt-16 text-center text-xl font-semibold">
         Current focus
       </h3>
-      <ul className="mt-6 grid gap-8 sm:grid-cols-3 sm:gap-6">
-        {currentFocus.map((item) => (
-          <li key={item.title} className="border-t border-border pt-4">
-            <p className="font-semibold">{item.title}</p>
+      <ul className="mt-8 grid gap-6 sm:grid-cols-3">
+        {currentFocus.map((item, index) => (
+          <li key={item.title} className="reveal card-hover card p-6">
+            <span className="text-brand text-3xl font-bold">0{index + 1}</span>
+            <p className="mt-3 font-semibold text-white">{item.title}</p>
             <p className="mt-2 text-sm/relaxed text-muted">
               {item.description}
             </p>
           </li>
         ))}
       </ul>
-    </SplitSection>
+    </HomeSection>
   );
 }

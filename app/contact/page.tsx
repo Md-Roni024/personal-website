@@ -16,12 +16,10 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Get in touch"
-        intro="The best way to reach me is by email. I'm also on the profiles below."
+        intro="Email, profiles and resume."
       />
       <Container className="pb-16 sm:pb-24">
-        <div className="max-w-2xl">
-          <ContactLinks />
-        </div>
+        <ContactLinks />
       </Container>
     </>
   );

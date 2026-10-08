@@ -9,7 +9,7 @@ type PageHeaderProps = {
   children?: ReactNode;
 };
 
-/** Top of every inner page: eyebrow, the page's single h1, and an optional lead paragraph. */
+/** Top of every inner page: eyebrow, the page's single h1, and an optional lead paragraph. Centred, on the hero glow. */
 export function PageHeader({
   title,
   eyebrow,
@@ -17,12 +17,14 @@ export function PageHeader({
   children,
 }: PageHeaderProps) {
   return (
-    <div className="pt-12 pb-12 sm:pt-20 sm:pb-16 lg:pt-24">
-      <Container>
-        {eyebrow && <Eyebrow className="mb-5">{eyebrow}</Eyebrow>}
-        <h1 className="max-w-4xl font-serif text-title">{title}</h1>
+    <div className="hero-glow pt-16 pb-16 sm:pt-24 sm:pb-20">
+      <Container className="text-center">
+        {eyebrow && <Eyebrow className="enter mb-4">{eyebrow}</Eyebrow>}
+        <h1 className="enter enter-delay-1 mx-auto max-w-4xl text-title font-bold">
+          {title}
+        </h1>
         {intro && (
-          <p className="mt-6 max-w-2xl text-lg/relaxed text-muted sm:text-xl/relaxed">
+          <p className="enter enter-delay-2 mx-auto mt-5 max-w-2xl text-lg/relaxed text-muted">
             {intro}
           </p>
         )}

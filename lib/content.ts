@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { cacheLife } from "next/cache";
+import { certifications } from "@/content/certifications";
 import { education, academicInterests } from "@/content/education";
 import { experience } from "@/content/experience";
 import { expertise } from "@/content/expertise";
@@ -22,8 +23,12 @@ export type ProfileLink = {
 export type FocusItem = { title: string; description: string };
 
 export type Profile = {
+  /** Rotating roles in the hero, e.g. "Web Developer". */
+  roles: readonly string[];
   /** Positioning statement under the name in the hero. */
   headline: string;
+  /** Path under /public, e.g. "/images/profile.jpg". */
+  photo?: string;
   /** Short homepage introduction, one paragraph per entry. */
   introduction: readonly string[];
   currentFocus: readonly FocusItem[];
@@ -31,13 +36,14 @@ export type Profile = {
 
 export type ExperienceEntry = {
   organization: string;
-  role: string;
+  /** Job title. Optional: the page shows the organisation alone when it is missing. */
+  role?: string;
   /** Free-form, e.g. "2024" or "Jan 2024". */
   start: string;
   /** Omit for a current role. */
   end?: string;
   location?: string;
-  summary: string;
+  summary?: string;
   highlights?: readonly string[];
   technologies?: readonly string[];
 };
@@ -53,6 +59,17 @@ export type EducationEntry = {
   summary?: string;
   /** Relevant courses, shown on the Academic page. */
   coursework?: readonly string[];
+};
+
+export type Certification = {
+  title: string;
+  issuer?: string;
+  /** Free-form, e.g. "May 2024". */
+  date: string;
+  description?: string;
+  /** Credential / certificate URL. */
+  href?: string;
+  image?: string;
 };
 
 export type InterestItem = { title: string; description?: string };
@@ -85,6 +102,8 @@ export type ProjectMeta = {
   category: ProjectCategory;
   year: string;
   technologies: readonly string[];
+  /** Cover image: a path under /public or an https URL (host must be allowed in next.config.ts). */
+  image?: string;
   /** Shown on the homepage when true. */
   featured?: boolean;
   /** Lower numbers sort first. */
@@ -103,6 +122,7 @@ export const getExpertise = (): readonly ExpertiseCategory[] => expertise;
 export const getEducation = (): readonly EducationEntry[] => education;
 export const getAcademicInterests = (): readonly string[] => academicInterests;
 export const getInterests = (): Interests => interests;
+export const getCertifications = (): readonly Certification[] => certifications;
 
 export const writingCategories = [
   "Article",

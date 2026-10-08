@@ -7,6 +7,7 @@ type InterestListProps = {
   headingLevel?: "h2" | "h3";
 };
 
+/** A titled card listing interest items. */
 export function InterestList({
   heading,
   items,
@@ -14,16 +15,14 @@ export function InterestList({
 }: InterestListProps) {
   const Heading = headingLevel;
   return (
-    <div>
-      <Heading className="font-mono text-xs tracking-widest text-subtle uppercase">
-        {heading}
-      </Heading>
+    <div className="reveal h-full card p-7">
+      <Heading className="text-xl font-semibold text-accent">{heading}</Heading>
       <ul className="mt-5 space-y-5">
         {items.map((item) => (
-          <li key={item.title}>
-            <p className="font-semibold">{item.title}</p>
+          <li key={item.title} className="border-l-2 border-primary/60 pl-4">
+            <p className="font-semibold text-white">{item.title}</p>
             {item.description && (
-              <p className="mt-1 text-muted">{item.description}</p>
+              <p className="mt-1 text-sm text-muted">{item.description}</p>
             )}
           </li>
         ))}
@@ -32,18 +31,23 @@ export function InterestList({
   );
 }
 
-/** Large serif list for the lightweight "Currently exploring" topics. */
+/** Chips for the lightweight "Currently exploring" topics. */
 export function ExploringList({ topics }: { topics: readonly string[] }) {
   return (
-    <ul className="flex flex-wrap gap-x-6 gap-y-2 font-serif text-xl">
+    <ul className="flex flex-wrap justify-center gap-3">
       {topics.map((topic) => (
-        <li key={topic}>{topic}</li>
+        <li
+          key={topic}
+          className="reveal rounded-full border border-primary/60 bg-primary/10 px-5 py-2 font-medium text-white"
+        >
+          {topic}
+        </li>
       ))}
     </ul>
   );
 }
 
-/** Personal interests: serif italic titles, no tags or metadata. */
+/** Personal interests as cards. */
 export function BeyondCodeList({
   items,
   headingLevel = "h3",
@@ -53,12 +57,14 @@ export function BeyondCodeList({
 }) {
   const Heading = headingLevel;
   return (
-    <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-3">
+    <ul className="grid gap-6 sm:grid-cols-3">
       {items.map((item) => (
-        <li key={item.title}>
-          <Heading className="font-serif text-2xl italic">{item.title}</Heading>
+        <li key={item.title} className="reveal card-hover card p-6 text-center">
+          <Heading className="text-lg font-semibold text-white">
+            {item.title}
+          </Heading>
           {item.description && (
-            <p className="mt-3 text-muted">{item.description}</p>
+            <p className="mt-3 text-sm text-muted">{item.description}</p>
           )}
         </li>
       ))}

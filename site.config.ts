@@ -1,15 +1,16 @@
-// Site-wide identity and settings.
-// DUMMY: name, title and description are placeholders until the owner supplies real values — do not invent them.
+// Site-wide identity and settings. Source: the owner's previous portfolio (roni-portfolio-ten.vercel.app).
 
 export const siteConfig = {
-  name: "Your Name",
-  title: "Your Professional Title",
+  name: "Md. Roni",
+  title: "Web Developer & Programmer",
   description:
-    "A short, one-sentence description of who you are and what you do.",
+    "Md. Roni — web developer and programmer. Projects, experience, education and certifications.",
   // Set NEXT_PUBLIC_SITE_URL once the domain is decided.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "en",
-  cvPath: "/documents/cv.pdf",
+  // CV hosted on Google Drive. To self-host instead, put the PDF in public/documents/cv.pdf and use "/documents/cv.pdf".
+  cvPath:
+    "https://drive.google.com/file/d/1otnLp-BcdxQj1h78ULk5hkIr1cGApeqj/view?usp=sharing",
   nav: [
     { label: "About", href: "/about" },
     { label: "Experience", href: "/experience" },

@@ -1,5 +1,6 @@
 import type { EducationEntry } from "@/lib/content";
 import { TagList } from "@/components/ui/tag";
+import { Timeline, TimelineItem } from "./timeline";
 
 type EducationListProps = {
   entries: readonly EducationEntry[];
@@ -12,42 +13,32 @@ export function EducationList({
   variant = "compact",
 }: EducationListProps) {
   return (
-    <ul className="space-y-10">
+    <Timeline>
       {entries.map((entry) => (
-        <li
+        <TimelineItem
           key={`${entry.institution}-${entry.degree}`}
-          className="grid gap-2 sm:grid-cols-[8rem_1fr] sm:gap-6"
+          date={`${entry.start}${entry.end ? ` – ${entry.end}` : ""}`}
         >
-          <p className="font-mono text-sm text-subtle">
-            {entry.start}
-            {entry.end && ` – ${entry.end}`}
+          <h3 className="text-lg font-semibold">{entry.institution}</h3>
+          <p className="mt-1 font-medium text-accent italic">
+            {entry.degree}
+            {entry.department && ` · ${entry.department}`}
           </p>
-          <div>
-            <h3
-              className={
-                variant === "full" ? "text-xl font-semibold" : "font-semibold"
-              }
-            >
-              {entry.degree}
-            </h3>
-            <p className="mt-1 text-muted">
-              {entry.institution}
-              {entry.department && ` · ${entry.department}`}
-            </p>
-            {entry.summary && (
-              <p className="mt-3 max-w-reading text-muted">{entry.summary}</p>
+          {entry.summary && (
+            <p className="mt-3 text-sm text-muted">{entry.summary}</p>
+          )}
+          {variant === "full" &&
+            entry.coursework &&
+            entry.coursework.length > 0 && (
+              <div className="mt-4">
+                <p className="text-xs font-semibold tracking-wide text-subtle uppercase">
+                  Relevant coursework
+                </p>
+                <TagList className="mt-2" tags={entry.coursework} />
+              </div>
             )}
-            {variant === "full" &&
-              entry.coursework &&
-              entry.coursework.length > 0 && (
-                <div className="mt-5">
-                  <p className="text-sm font-semibold">Relevant coursework</p>
-                  <TagList className="mt-2" tags={entry.coursework} />
-                </div>
-              )}
-          </div>
-        </li>
+        </TimelineItem>
       ))}
-    </ul>
+    </Timeline>
   );
 }

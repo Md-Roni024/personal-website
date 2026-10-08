@@ -7,7 +7,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 
 export const metadata = createMetadata({
   title: "Projects",
-  description: `Selected projects by ${siteConfig.name}: professional, academic, personal and experimental work.`,
+  description: `Projects by ${siteConfig.name}: web apps, Android apps and machine learning.`,
   path: "/projects",
 });
 
@@ -20,25 +20,26 @@ export default async function ProjectsPage() {
       projects: projects.filter((project) => project.category === category),
     }))
     .filter((group) => group.projects.length > 0);
+  const grouped = groups.length > 1;
 
   return (
     <>
       <PageHeader
         eyebrow="Projects"
-        title="Selected work"
-        intro="A small set of projects I'm proud of, grouped by the context they were built in."
+        title="Projects"
+        intro="I have worked on a wide range of projects, from web apps to Android apps and machine learning. Here are some of my projects."
       >
-        {groups.length > 1 && (
+        {grouped && (
           <nav aria-label="Project categories" className="mt-10">
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+            <ul className="flex flex-wrap justify-center gap-3 text-sm">
               {groups.map(({ category, projects }) => (
                 <li key={category}>
                   <a
                     href={`#${slugify(category)}`}
-                    className="text-muted transition-colors duration-200 hover:text-foreground"
+                    className="inline-flex items-center gap-2 rounded-full border border-primary px-4 py-2 font-medium text-white transition-colors duration-200 hover:bg-primary"
                   >
-                    {category}{" "}
-                    <span className="font-mono text-xs text-subtle">
+                    {category}
+                    <span className="text-xs text-accent">
                       {projects.length}
                     </span>
                   </a>
@@ -49,23 +50,28 @@ export default async function ProjectsPage() {
         )}
       </PageHeader>
 
-      {groups.map(({ category, projects }, index) => (
-        <Section
-          key={category}
-          id={slugify(category)}
-          aria-labelledby={`${slugify(category)}-heading`}
-          divided={index > 0}
-          flushTop={index === 0}
-          className="scroll-mt-8"
-        >
-          <SectionHeading
-            id={`${slugify(category)}-heading`}
-            title={category}
-            className="mb-10"
-          />
-          <ProjectGrid projects={projects} showCategory={false} />
+      {grouped ? (
+        groups.map(({ category, projects }, index) => (
+          <Section
+            key={category}
+            id={slugify(category)}
+            aria-labelledby={`${slugify(category)}-heading`}
+            flushTop={index === 0}
+            className="scroll-mt-24"
+          >
+            <SectionHeading
+              id={`${slugify(category)}-heading`}
+              title={category}
+              className="mb-12"
+            />
+            <ProjectGrid projects={projects} />
+          </Section>
+        ))
+      ) : (
+        <Section aria-label="All projects" flushTop>
+          <ProjectGrid projects={projects} />
         </Section>
-      ))}
+      )}
     </>
   );
 }

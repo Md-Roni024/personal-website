@@ -5,18 +5,18 @@
 A content-driven personal website — not a SaaS app, not a generic portfolio template.
 
 - Product spec: `PROJECT_PLAN.md`. Read it before major product decisions.
-- Visual language: `DESIGN.md`. Read it before any visual/UI change.
+- Visual language: `DESIGN.md`. Read it before any visual/UI change. The owner chose to follow their previous portfolio (dark navy + purple, Poppins, gradients, typewriter, scroll reveals); this overrides the plan's "restrained" styling rules.
 - Workflow: `CLAUDE_CODE_GUIDE.md`. Work one phase / one objective at a time.
 - `docs/archive/` holds superseded planning docs. Do not follow them.
 
 ## Hard rules
 
 - Never invent personal information: experience, projects, achievements, education, research, skills, interests, publications, dates, links. Missing → `TODO:` placeholder or ask.
-- Until the owner supplies real data, build with **obviously fake dummy data** ("Your Name", "Sample Project", "Company Name", `20XX`, `example.com`) — never plausible-looking invented facts. Mark every dummy file/block with a `DUMMY` comment so it can be found with `grep -r DUMMY` and replaced.
+- Real content comes from the owner's previous portfolio (https://roni-portfolio-ten.vercel.app/). Sections it does not cover (current focus, interests, beyond code, most of About, academic interests) still hold **DUMMY** data. For missing data, use **obviously fake dummy data** ("Your Name", "Sample Project", "Company Name", `20XX`, `example.com`) — never plausible-looking invented facts. Mark every dummy file/block with a `DUMMY` comment so it can be found with `grep -r DUMMY` and replaced.
 - Do not exaggerate expertise or responsibilities.
 - Keep the architecture simple. No database, auth, CMS, backend API, or state library without an explicit requirement.
 - Add a dependency only with a clear reason. In use: `lucide-react` (icons), `@vercel/analytics`. Deliberately not installed: shadcn/ui and Motion — CSS covers current needs; add them only for a concrete case CSS cannot handle cleanly.
-- Avoid generic AI-portfolio patterns (gradients, glow, glassmorphism, skill bars, fake terminals, carousels). See `DESIGN.md`.
+- Follow `DESIGN.md` for what is in and out (no skill bars, particles, 3D, carousels, autoplay).
 - Do not redesign or refactor unrelated sections.
 
 ## Architecture
@@ -32,7 +32,7 @@ A content-driven personal website — not a SaaS app, not a generic portfolio te
 - Dynamic routes (`/projects/[slug]`, `/writing/[slug]`): `dynamicParams` is not allowed with Cache Components. Use `collectionStaticParams()` (never returns an empty list) and call `notFound()` for unknown slugs.
 - SEO: build page metadata with `createMetadata()` from `lib/metadata.ts` (canonical, Open Graph, Twitter). Structured data via `JsonLd` — `WebSite`+`Person` on `/`, `Article` on posts. Add new public routes to `app/sitemap.ts`.
 - Site identity, nav, site URL and CV path live in `site.config.ts`.
-- Components: `components/layout` (header, nav, footer), `components/sections` (homepage sections), `components/content` (content renderers), `components/ui` (primitives: `Container`, `Section`, `SectionHeading`, `Eyebrow`, `Button`, `ButtonLink`, `TextLink`, `Card`, `Tag`, `TagList`, `PageHeader`). Reuse these before writing new styles.
+- Components: `components/layout` (header, nav, footer), `components/sections` (homepage sections on `HomeSection`), `components/content` (content renderers), `components/ui` (primitives: `Container`, `Section`, `SectionHeading`, `Eyebrow`, `Button`, `ButtonLink`, `TextLink`, `Card`, `Tag`, `TagList`, `PageHeader`). Reuse these before writing new styles.
 - MDX element styles live in `mdx-components.tsx`. `/design` is an internal, noindex preview of the design system.
 
 ## Quality

@@ -1,16 +1,35 @@
-// DUMMY: placeholder contact/profile links. Replace with real ones.
+// Source: previous portfolio.
 import type { ProfileLink } from "@/lib/content";
 
 export const links: readonly ProfileLink[] = [
-  { label: "Email", href: "mailto:you@example.com", detail: "you@example.com" },
+  {
+    label: "Email",
+    href: "mailto:roni.cse024@gmail.com",
+    detail: "roni.cse024@gmail.com",
+  },
   {
     label: "GitHub",
-    href: "https://github.com/your-username",
-    detail: "your-username",
+    href: "https://github.com/Md-Roni024",
+    detail: "Md-Roni024",
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/your-username",
-    detail: "your-username",
+    href: "https://www.linkedin.com/in/roni-hossain-z24/",
+    detail: "roni-hossain-z24",
+  },
+  {
+    label: "LeetCode",
+    href: "https://leetcode.com/Roni_024/",
+    detail: "Roni_024",
+  },
+  {
+    label: "Codeforces",
+    href: "https://codeforces.com/profile/Roni24",
+    detail: "Roni24",
+  },
+  {
+    label: "YouTube",
+    href: "https://www.youtube.com/@ronihossain7428",
+    detail: "@ronihossain7428",
   },
 ];

@@ -4,6 +4,7 @@ import { createMetadata } from "@/lib/metadata";
 import { JsonLd } from "@/components/content/json-ld";
 import { AcademicPreview } from "@/components/sections/academic-preview";
 import { BeyondCode } from "@/components/sections/beyond-code";
+import { Certifications } from "@/components/sections/certifications";
 import { Contact } from "@/components/sections/contact";
 import { ExperiencePreview } from "@/components/sections/experience-preview";
 import { Expertise } from "@/components/sections/expertise";
@@ -43,10 +44,11 @@ export default function Home() {
       />
       <Hero />
       <Introduction />
+      <Expertise />
       <ExperiencePreview />
       <FeaturedProjects />
-      <Expertise />
       <AcademicPreview />
+      <Certifications />
       <Interests />
       <BeyondCode />
       <Contact />

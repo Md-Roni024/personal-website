@@ -1,15 +1,16 @@
 import { ExpertiseGrid } from "@/components/content/expertise-grid";
-import { SplitSection } from "./split-section";
+import { HomeSection } from "./home-section";
 
 export function Expertise() {
   return (
-    <SplitSection
-      id="expertise"
-      eyebrow="Expertise"
-      title="What I work with"
-      more={{ href: "/about#expertise", label: "More about how I work" }}
+    <HomeSection
+      id="skills"
+      eyebrow="Skills"
+      title="Skills"
+      intro="Here are some of the skills I have been working with."
+      tone="tint"
     >
       <ExpertiseGrid />
-    </SplitSection>
+    </HomeSection>
   );
 }

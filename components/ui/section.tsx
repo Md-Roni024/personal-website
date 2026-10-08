@@ -8,13 +8,25 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
   divided?: boolean;
   /** No top padding — for the first section directly under a PageHeader. */
   flushTop?: boolean;
+  /**
+   * Full-width background. `tint`: soft green wash (personal sections). `band`: deep green, re-themes all
+   * tokens inside (contact). Toned sections never draw the divider — the colour change separates them.
+   */
+  tone?: "default" | "tint" | "band";
 };
+
+const tones = {
+  default: "",
+  tint: "bg-tint",
+  band: "tone-band",
+} as const;
 
 /** Vertical rhythm wrapper for page sections. */
 export function Section({
   size,
   divided = false,
   flushTop = false,
+  tone = "default",
   className,
   children,
   ...props
@@ -23,12 +35,15 @@ export function Section({
     <section
       className={cn(
         flushTop ? "pb-16 sm:pb-24 lg:pb-32" : "py-16 sm:py-24 lg:py-32",
+        tones[tone],
         className,
       )}
       {...props}
     >
       <Container size={size}>
-        {divided && <hr className="mb-16 border-border sm:mb-24" />}
+        {divided && tone === "default" && (
+          <hr className="mb-16 border-border sm:mb-24" />
+        )}
         {children}
       </Container>
     </section>
@@ -41,6 +56,8 @@ type SectionHeadingProps = {
   intro?: ReactNode;
   /** `h1` for page titles, `h2` (default) for sections. */
   level?: 1 | 2;
+  /** Centred (default, like the reference site) or left-aligned. */
+  align?: "center" | "left";
   id?: string;
   className?: string;
 };
@@ -50,25 +67,40 @@ export function SectionHeading({
   eyebrow,
   intro,
   level = 2,
+  align = "center",
   id,
   className,
 }: SectionHeadingProps) {
   const Heading = level === 1 ? "h1" : "h2";
+  const centred = align === "center";
   return (
-    <header className={cn("max-w-reading", className)}>
-      {eyebrow && <Eyebrow className="mb-4">{eyebrow}</Eyebrow>}
+    <header
+      className={cn(
+        "reveal max-w-2xl",
+        centred && "mx-auto text-center",
+        className,
+      )}
+    >
+      {eyebrow && <Eyebrow className="mb-3">{eyebrow}</Eyebrow>}
       <Heading
         id={id}
         className={cn(
-          "font-serif font-normal",
+          "font-bold",
           level === 1
             ? "text-title"
-            : "text-3xl/tight tracking-tight sm:text-4xl/tight",
+            : "text-3xl/tight sm:text-4xl/tight lg:text-[2.625rem]/tight",
         )}
       >
         {title}
       </Heading>
-      {intro && <p className="mt-4 text-lg/relaxed text-muted">{intro}</p>}
+      <span
+        aria-hidden="true"
+        className={cn(
+          "mt-4 block h-1 w-14 rounded-full bg-brand",
+          centred && "mx-auto",
+        )}
+      />
+      {intro && <p className="mt-5 text-lg/relaxed text-muted">{intro}</p>}
     </header>
   );
 }
@@ -81,7 +113,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "font-mono text-xs tracking-widest text-subtle uppercase",
+        "text-xs font-semibold tracking-[0.18em] text-accent uppercase",
         className,
       )}
       {...props}

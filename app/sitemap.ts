@@ -17,7 +17,10 @@ const staticRoutes = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [projects, posts] = await Promise.all([getProjects(), getPosts()]);
   return [
-    ...staticRoutes.map((route) => ({ url: absoluteUrl(route) })),
+    // /writing is listed only once there is something to read.
+    ...staticRoutes
+      .filter((route) => route !== "/writing" || posts.length > 0)
+      .map((route) => ({ url: absoluteUrl(route) })),
     ...projects.map((project) => ({
       url: absoluteUrl(`/projects/${project.slug}`),
     })),

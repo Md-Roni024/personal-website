@@ -5,7 +5,7 @@ import { TextLink } from "@/components/ui/text-link";
 const components: MDXComponents = {
   h2: (props) => (
     <h2
-      className="mt-14 mb-4 font-serif text-2xl/tight tracking-tight sm:text-3xl/tight"
+      className="mt-14 mb-4 text-2xl/tight font-semibold tracking-tight sm:text-3xl/tight"
       {...props}
     />
   ),
@@ -30,7 +30,7 @@ const components: MDXComponents = {
   li: (props) => <li className="pl-1 sm:text-lg/relaxed" {...props} />,
   blockquote: (props) => (
     <blockquote
-      className="my-8 border-l-2 border-accent pl-5 font-serif text-xl/relaxed text-muted italic"
+      className="my-8 border-l-2 border-primary pl-5 text-xl/relaxed text-muted italic"
       {...props}
     />
   ),

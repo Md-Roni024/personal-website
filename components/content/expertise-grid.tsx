@@ -1,21 +1,29 @@
 import { getExpertise } from "@/lib/content";
 
-/** Expertise grouped by category. Deliberately no ratings or percentage bars. */
+/** Skills grouped by category, as cards of chips (reference-site style). No ratings or percentage bars. */
 export function ExpertiseGrid() {
   return (
-    <dl className="grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="mx-auto flex max-w-6xl flex-wrap justify-center gap-8">
       {getExpertise().map((category) => (
-        <div key={category.name}>
-          <dt className="font-semibold">{category.name}</dt>
-          <dd className="mt-3">
-            <ul className="space-y-1.5 text-muted">
-              {category.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </dd>
-        </div>
+        <li
+          key={category.name}
+          className="reveal w-full card-hover card px-7 py-6 sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.4rem)]"
+        >
+          <h3 className="text-center text-2xl font-semibold text-accent">
+            {category.name}
+          </h3>
+          <ul className="mt-6 flex flex-wrap justify-center gap-3">
+            {category.items.map((item) => (
+              <li
+                key={item}
+                className="rounded-xl border border-border-strong px-4 py-2 text-sm text-foreground transition-colors duration-300 hover:border-primary hover:bg-primary/20"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </li>
       ))}
-    </dl>
+    </ul>
   );
 }

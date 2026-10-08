@@ -2,72 +2,122 @@
 
 /*
  * Design tokens — see DESIGN.md. Components use these tokens, never raw colour values.
- * All text tokens meet WCAG AA (≥ 4.5:1) on both `background` and `surface`, in both themes.
+ * Dark theme only, following the owner's existing portfolio (deep navy + purple).
+ * Text tokens meet WCAG AA (≥ 4.5:1) on `background`, `surface` and `surface-raised`.
+ * `primary` (#854ce6) is for fills, borders and large display text only — use `accent` for small purple text.
  */
 
 :root {
-  --background: #faf9f7;
-  --surface: #f2f0ec;
-  --foreground: #1c1a17;
-  --muted: #57534e;
-  --subtle: #6f6a64;
-  --border: #e4e1dc;
-  --border-strong: #c9c4bc;
-  --accent: #2f5d43;
+  --background: #1c1c27;
+  --surface: #171721; /* cards */
+  --surface-raised: #232334; /* chips, hover states */
+  --foreground: #f2f2f7;
+  --muted: #b1b2b3;
+  --subtle: #8e8ea6;
+  --border: #2d2b45;
+  --border-strong: #4a3d7a;
+  --primary: #854ce6;
+  --accent: #a97cf5;
   --accent-foreground: #ffffff;
-  color-scheme: light;
+  --gradient-from: #8400ff;
+  --gradient-to: #c800e0;
+  --tint: #201e33; /* purple-tinted section background */
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #141311;
-    --surface: #1d1c19;
-    --foreground: #ece9e4;
-    --muted: #a8a29e;
-    --subtle: #8f8983;
-    --border: #2c2a26;
-    --border-strong: #46423c;
-    --accent: #8fbf9f;
-    --accent-foreground: #141311;
-    color-scheme: dark;
-  }
+/* Section tone that sits on the card colour (contact band, footer). Re-points `background` so children follow. */
+.tone-band {
+  --background: var(--surface);
+  --surface: var(--surface-raised);
+  background-color: var(--background);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-tint: var(--tint);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
+  --color-primary: var(--primary);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 @theme {
   /* Containers */
   --container-reading: 42.5rem; /* 680px — long-form reading */
-  --container-content: 67.5rem; /* 1080px — default page width */
-  --container-wide: 80rem; /* 1280px — rare, e.g. project media */
+  --container-content: 75rem; /* 1200px — default page width (matches the reference site) */
+  --container-wide: 85rem;
 
   /* Fluid display sizes (hero / page titles). Body sizes use Tailwind defaults. */
-  --text-display: clamp(2.5rem, 1.6rem + 4.2vw, 4.5rem);
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.025em;
-  --text-title: clamp(2rem, 1.5rem + 2.2vw, 3rem);
-  --text-title--line-height: 1.1;
-  --text-title--letter-spacing: -0.02em;
+  --text-display: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.01em;
+  --text-title: clamp(2rem, 1.5rem + 2vw, 2.75rem);
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.01em;
+}
+
+/* Brand gradient (primary buttons, hero highlights). */
+@utility bg-brand {
+  background-image: linear-gradient(
+    225deg,
+    var(--gradient-from),
+    var(--gradient-to)
+  );
+}
+
+@utility text-brand {
+  background-image: linear-gradient(
+    225deg,
+    var(--gradient-from),
+    var(--gradient-to)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+/* Card: dark panel, thin purple border, soft blue-violet shadow, lifts on hover (from the reference site). */
+@utility card {
+  border-radius: 1rem;
+  border: 1px solid color-mix(in oklab, var(--primary) 45%, transparent);
+  background-color: var(--surface);
+  box-shadow: 0 4px 24px rgb(23 92 230 / 0.15);
+  transition:
+    transform 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    border-color 300ms ease-in-out;
+}
+
+@utility card-hover {
+  &:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+    box-shadow: 0 8px 30px rgb(23 92 230 / 0.25);
+  }
+}
+
+/* Soft violet/blue glow behind the hero, angled bottom edge (from the reference site). */
+@utility hero-glow {
+  background-image:
+    radial-gradient(60% 60% at 85% 20%, rgb(204 0 187 / 0.14), transparent 70%),
+    radial-gradient(50% 60% at 10% 90%, rgb(0 70 209 / 0.16), transparent 70%),
+    linear-gradient(343deg, rgb(132 59 206 / 0.06) 6%, transparent 65%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -78,7 +128,7 @@
   h2,
   h3,
   h4 {
-    @apply text-balance;
+    @apply text-balance text-white;
   }
 
   p {
@@ -86,7 +136,7 @@
   }
 
   ::selection {
-    @apply bg-accent text-accent-foreground;
+    @apply bg-primary text-white;
   }
 
   :focus-visible {
@@ -101,6 +151,56 @@
   /* Long words and URLs must never cause horizontal scroll. */
   main {
     overflow-wrap: break-word;
+  }
+}
+
+/*
+ * Scroll reveal: elements fade and slide up as they enter the viewport. Pure CSS (scroll-driven animations);
+ * browsers without support simply show the content. Disabled for reduced motion.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+
+  /* Hero entrance on load. */
+  .enter {
+    animation: fade-in 700ms ease-out both;
+  }
+  .enter-delay-1 {
+    animation-delay: 120ms;
+  }
+  .enter-delay-2 {
+    animation-delay: 240ms;
+  }
+  .enter-delay-3 {
+    animation-delay: 360ms;
   }
 }
 

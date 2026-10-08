@@ -1,15 +1,16 @@
 import { ContactLinks } from "@/components/content/contact-links";
-import { SplitSection } from "./split-section";
+import { HomeSection } from "./home-section";
 
 export function Contact() {
   return (
-    <SplitSection
+    <HomeSection
       id="contact"
       eyebrow="Contact"
-      title="Get in touch"
-      intro="The best way to reach me is by email."
+      title="Get in Touch"
+      intro="Email, profiles and resume."
+      tone="band"
     >
       <ContactLinks />
-    </SplitSection>
+    </HomeSection>
   );
 }

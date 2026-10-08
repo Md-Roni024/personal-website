@@ -3,27 +3,25 @@ import {
   ExploringList,
   InterestList,
 } from "@/components/content/interest-list";
-import { SplitSection } from "./split-section";
+import { HomeSection } from "./home-section";
 
 export function Interests() {
   const { currentWork, exploring, future } = getInterests();
   return (
-    <SplitSection
+    <HomeSection
       id="interests"
       eyebrow="Research & interests"
-      title="What I'm exploring"
+      title="What I'm Exploring"
       more={{ href: "/interests", label: "Research & interests" }}
     >
-      <div className="grid gap-12 sm:grid-cols-2 sm:gap-8">
+      <div className="grid gap-6 md:grid-cols-2">
         <InterestList heading="Current work" items={currentWork} />
         <InterestList heading="Future interests" items={future} />
       </div>
-      <div className="mt-12 border-t border-border pt-6">
-        <h3 className="mb-4 font-mono text-xs tracking-widest text-subtle uppercase">
-          Currently exploring
-        </h3>
-        <ExploringList topics={exploring} />
-      </div>
-    </SplitSection>
+      <h3 className="reveal mt-14 mb-6 text-center text-xl font-semibold">
+        Currently exploring
+      </h3>
+      <ExploringList topics={exploring} />
+    </HomeSection>
   );
 }

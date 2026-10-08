@@ -1,13 +1,16 @@
-// DUMMY: placeholder profile content. Replace with real information.
 import type { Profile } from "@/lib/content";
 
 export const profile: Profile = {
+  // Source: previous portfolio.
+  roles: ["Web Developer", "Programmer"],
   headline:
-    "A one- or two-sentence positioning statement: what you build, what you care about, and where you are heading.",
+    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning, I am dedicated to delivering high-quality results.",
+  photo: "/images/profile.jpg",
   introduction: [
-    "A short introduction paragraph. Who you are, what you currently do, and the kind of problems you enjoy working on. Keep it to two or three sentences.",
-    "An optional second paragraph about how you approach your work, or what connects your professional and personal interests.",
+    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning, I am dedicated to delivering high-quality results.",
+    "With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   ],
+  // DUMMY: placeholder current focus. Replace with what you are actually focused on now.
   currentFocus: [
     {
       title: "Focus area one",
