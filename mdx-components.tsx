@@ -3,16 +3,25 @@ import { TextLink } from "@/components/ui/text-link";
 
 // Global element styles for MDX content (projects, writing, about). Wrap rendered MDX in a `max-w-reading` container.
 const components: MDXComponents = {
-  h2: (props) => (
+  h2: ({ children, ...props }) => (
     <h2
-      className="mt-14 mb-4 text-2xl/tight font-semibold tracking-tight sm:text-3xl/tight"
+      className="mt-12 mb-4 flex items-center gap-3 text-2xl/tight font-semibold sm:text-[1.75rem]/tight"
       {...props}
-    />
+    >
+      <span
+        aria-hidden="true"
+        className="h-7 w-1.5 shrink-0 rounded-full bg-brand"
+      />
+      {children}
+    </h2>
   ),
   h3: (props) => <h3 className="mt-10 mb-3 text-lg font-semibold" {...props} />,
   h4: (props) => <h4 className="mt-8 mb-2 font-semibold" {...props} />,
   p: (props) => (
-    <p className="my-5 text-base/relaxed sm:text-lg/relaxed" {...props} />
+    <p
+      className="my-4 text-base/relaxed text-muted sm:text-lg/relaxed"
+      {...props}
+    />
   ),
   a: ({ href = "", ...props }) => <TextLink href={href} {...props} />,
   ul: (props) => (
@@ -27,7 +36,9 @@ const components: MDXComponents = {
       {...props}
     />
   ),
-  li: (props) => <li className="pl-1 sm:text-lg/relaxed" {...props} />,
+  li: (props) => (
+    <li className="pl-1 text-muted sm:text-lg/relaxed" {...props} />
+  ),
   blockquote: (props) => (
     <blockquote
       className="my-8 border-l-2 border-primary pl-5 text-xl/relaxed text-muted italic"

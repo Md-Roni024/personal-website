@@ -48,6 +48,7 @@ Section tones (`Section tone=…`): `default`, `tint`, `band` (card colour — C
 - **Project card** — white image panel (logos/screenshots, `object-contain`), or a gradient panel with initials when there is no image; tags, title, date, 3-line summary.
 - **Skills** — one card per category, centred title in `accent`, items as outlined chips. Never ratings or percentages.
 - **Timeline** (Experience, Education) — gradient vertical line with ringed dots; left-aligned on mobile, centred and alternating on md+; each entry is a card with the date above it.
+- **About** — homepage: intro card (large lead sentence, `ProfileFacts` tiles, CTAs) beside `StatsGrid` + a "Find me online" chip card; then icon "Current focus" cards. `/about`: sticky profile card (photo, facts, CTAs) beside the MDX write-up in a card, then stats and skills. Facts and numbers are computed from content, never typed in.
 - **Tags** — small rounded chips, `primary/15` background, `accent` text.
 - **Header** — sticky, translucent background with blur; monogram + name left; links white → `accent` on hover/current; outlined "Resume" pill. Below `lg` a "Menu" button opens a full-screen native `<dialog>` (focus contained, Esc closes, focus restored). "Writing" is hidden until a post exists.
 - **Footer** — centred: gradient name, nav, round social icon buttons, copyright.
