@@ -36,7 +36,7 @@ const swatchClass: Record<(typeof colors)[number], string> = {
 
 export default function DesignPage() {
   return (
-    <main className="flex-1">
+    <>
       <Section>
         <Eyebrow className="mb-6">Design system preview</Eyebrow>
         <h1 className="max-w-4xl font-serif text-display">
@@ -137,6 +137,6 @@ export default function DesignPage() {
           <DesignPreview />
         </div>
       </Section>
-    </main>
+    </>
   );
 }

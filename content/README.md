@@ -27,4 +27,4 @@ Body content…
 
 The exact metadata fields per content type are defined by the types in `lib/content.ts` when each phase implements them.
 
-Images: `public/images/` (general), `public/projects/<slug>/` (project assets). CV: `public/documents/cv.pdf`.
+Images: `public/images/` (general), `public/projects/<slug>/` (project assets). CV: `public/documents/cv.pdf` (currently a DUMMY placeholder PDF).

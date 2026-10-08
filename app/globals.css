@@ -93,6 +93,11 @@
     @apply rounded-xs outline-2 outline-offset-2 outline-accent;
   }
 
+  /* Lock page scroll while the mobile menu (modal <dialog>) is open. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
   /* Long words and URLs must never cause horizontal scroll. */
   main {
     overflow-wrap: break-word;

@@ -27,6 +27,8 @@ A content-driven personal website — not a SaaS app, not a generic portfolio te
   - Long-form prose → `.mdx` in `content/` (projects, writing, about), metadata via `export const metadata`.
   - Structured records (experience, education, expertise, interests, links) → typed `.ts` files in `content/`.
   - Routes read content only through `lib/content.ts`.
+  - Files starting with `_` are internal (e.g. `_design-preview.mdx`) and must be skipped by content listings.
+- The layout renders `<main id="main">`; pages must not add another `<main>`.
 - Site identity, nav, site URL and CV path live in `site.config.ts`.
 - Components: `components/layout` (header, nav, footer), `components/sections` (homepage sections), `components/content` (content renderers), `components/ui` (primitives: `Container`, `Section`, `SectionHeading`, `Eyebrow`, `Button`, `ButtonLink`, `TextLink`, `Card`, `Tag`, `TagList`). Reuse these before writing new styles.
 - MDX element styles live in `mdx-components.tsx`. `/design` is an internal, noindex preview of the design system.

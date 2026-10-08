@@ -1,9 +1,11 @@
-// Site-wide identity and settings. Values marked TODO must come from the site owner — do not invent them.
+// Site-wide identity and settings.
+// DUMMY: name, title and description are placeholders until the owner supplies real values — do not invent them.
 
 export const siteConfig = {
-  name: "TODO: Full name",
-  title: "TODO: Professional title",
-  description: "TODO: One-sentence site description",
+  name: "Your Name",
+  title: "Your Professional Title",
+  description:
+    "A short, one-sentence description of who you are and what you do.",
   // Set NEXT_PUBLIC_SITE_URL once the domain is decided.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "en",
@@ -19,3 +21,4 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+export type NavItem = SiteConfig["nav"][number];
