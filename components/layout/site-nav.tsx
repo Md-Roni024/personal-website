@@ -15,14 +15,14 @@ function isCurrent(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** Desktop nav (md+) and mobile menu (<md). The mobile menu is a native modal <dialog>: it traps focus, closes on Esc and restores focus to the trigger. */
+/** Desktop nav (lg+) and mobile menu (<lg; seven items don't fit beside the name at tablet width). The mobile menu is a native modal <dialog>: it traps focus, closes on Esc and restores focus to the trigger. */
 export function SiteNav({ items, cvPath }: SiteNavProps) {
   const pathname = usePathname();
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   // Close the mobile menu if the viewport grows past the mobile breakpoint.
   useEffect(() => {
-    const query = window.matchMedia("(min-width: 48rem)");
+    const query = window.matchMedia("(min-width: 64rem)");
     const onChange = () => query.matches && dialogRef.current?.close();
     query.addEventListener("change", onChange);
     return () => query.removeEventListener("change", onChange);
@@ -32,7 +32,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
 
   return (
     <>
-      <nav aria-label="Main" className="hidden md:block">
+      <nav aria-label="Main" className="hidden lg:block">
         <ul className="flex items-center gap-7 text-sm">
           {items.map((item) => {
             const current = isCurrent(pathname, item.href);
@@ -66,7 +66,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
         type="button"
         onClick={() => dialogRef.current?.showModal()}
         aria-haspopup="dialog"
-        className="-mr-2 min-h-11 px-2 text-sm font-medium md:hidden"
+        className="-mr-2 min-h-11 px-2 text-sm font-medium lg:hidden"
       >
         Menu
       </button>

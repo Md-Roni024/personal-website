@@ -1,25 +1,16 @@
 import { getInterests } from "@/lib/content";
+import { BeyondCodeList } from "@/components/content/interest-list";
 import { SplitSection } from "./split-section";
 
-/** Personal interests. Deliberately softer than the technical sections: serif titles, no tags or metadata. */
 export function BeyondCode() {
-  const { beyondCode } = getInterests();
   return (
     <SplitSection
       id="beyond-code"
       eyebrow="Beyond code"
       title="Outside of work"
+      more={{ href: "/interests#beyond-code", label: "More beyond code" }}
     >
-      <ul className="grid gap-x-8 gap-y-10 sm:grid-cols-3">
-        {beyondCode.map((item) => (
-          <li key={item.title}>
-            <h3 className="font-serif text-2xl italic">{item.title}</h3>
-            {item.description && (
-              <p className="mt-3 text-muted">{item.description}</p>
-            )}
-          </li>
-        ))}
-      </ul>
+      <BeyondCodeList items={getInterests().beyondCode} />
     </SplitSection>
   );
 }

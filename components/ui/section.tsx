@@ -6,18 +6,27 @@ type SectionProps = ComponentPropsWithoutRef<"section"> & {
   size?: "reading" | "content" | "wide";
   /** Draw a hairline rule above the section. */
   divided?: boolean;
+  /** No top padding — for the first section directly under a PageHeader. */
+  flushTop?: boolean;
 };
 
 /** Vertical rhythm wrapper for page sections. */
 export function Section({
   size,
   divided = false,
+  flushTop = false,
   className,
   children,
   ...props
 }: SectionProps) {
   return (
-    <section className={cn("py-16 sm:py-24 lg:py-32", className)} {...props}>
+    <section
+      className={cn(
+        flushTop ? "pb-16 sm:pb-24 lg:pb-32" : "py-16 sm:py-24 lg:py-32",
+        className,
+      )}
+      {...props}
+    >
       <Container size={size}>
         {divided && <hr className="mb-16 border-border sm:mb-24" />}
         {children}

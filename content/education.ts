@@ -9,6 +9,7 @@ export const education: readonly EducationEntry[] = [
     start: "20XX",
     end: "20XX",
     summary: "Optional one-sentence note, e.g. thesis topic or focus area.",
+    coursework: ["Course one", "Course two", "Course three", "Course four"],
   },
 ];
 

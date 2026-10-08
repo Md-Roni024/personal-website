@@ -1,6 +1,6 @@
 // Content types and accessors. Routes and components read content only through this module.
 
-import { readdirSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { cacheLife } from "next/cache";
 import { education, academicInterests } from "@/content/education";
@@ -51,6 +51,8 @@ export type EducationEntry = {
   start: string;
   end?: string;
   summary?: string;
+  /** Relevant courses, shown on the Academic page. */
+  coursework?: readonly string[];
 };
 
 export type InterestItem = { title: string; description?: string };
@@ -102,35 +104,90 @@ export const getEducation = (): readonly EducationEntry[] => education;
 export const getAcademicInterests = (): readonly string[] => academicInterests;
 export const getInterests = (): Interests => interests;
 
+export const writingCategories = [
+  "Article",
+  "Technical note",
+  "Learning note",
+  "Retrospective",
+  "Research note",
+  "Personal",
+] as const;
+
+export type WritingCategory = (typeof writingCategories)[number];
+
+export type PostMeta = {
+  title: string;
+  summary: string;
+  /** ISO date, YYYY-MM-DD. */
+  date: string;
+  category: WritingCategory;
+  tags?: readonly string[];
+};
+
+export type Post = PostMeta & { slug: string; readingMinutes: number };
+
 /* ---------- MDX collections ---------- */
 
-const projectsDir = path.join(process.cwd(), "content", "projects");
+type Collection = "projects" | "writing";
 
-/** Slugs of all project MDX files. Files starting with `_` are skipped. */
-export function getProjectSlugs(): string[] {
-  return readdirSync(projectsDir)
+const collectionDir = (collection: Collection) =>
+  path.join(process.cwd(), "content", collection);
+
+/** Slugs of a collection's MDX files. Files starting with `_` are skipped (each folder keeps a `_template.mdx`). */
+function getSlugs(collection: Collection): string[] {
+  return readdirSync(collectionDir(collection))
     .filter((file) => file.endsWith(".mdx") && !file.startsWith("_"))
     .map((file) => file.replace(/\.mdx$/, ""));
 }
 
-function assertProjectMeta(
-  slug: string,
-  meta: unknown,
-): asserts meta is ProjectMeta {
-  const m = meta as Partial<ProjectMeta> | undefined;
-  const missing = (
-    ["title", "summary", "category", "year", "technologies"] as const
-  ).filter((key) => m?.[key] === undefined);
+function assertFields(
+  file: string,
+  meta: Record<string, unknown> | undefined,
+  required: readonly string[],
+) {
+  const missing = required.filter((key) => meta?.[key] === undefined);
   if (missing.length) {
+    throw new Error(`${file}: metadata is missing ${missing.join(", ")}`);
+  }
+}
+
+function assertOneOf(
+  file: string,
+  field: string,
+  value: unknown,
+  allowed: readonly string[],
+) {
+  if (!allowed.includes(value as string)) {
     throw new Error(
-      `content/projects/${slug}.mdx: metadata is missing ${missing.join(", ")}`,
+      `${file}: unknown ${field} "${String(value)}" (allowed: ${allowed.join(", ")})`,
     );
   }
-  if (!projectCategories.includes(m!.category as ProjectCategory)) {
-    throw new Error(
-      `content/projects/${slug}.mdx: unknown category "${m!.category}"`,
-    );
-  }
+}
+
+const WORDS_PER_MINUTE = 220;
+
+function readingMinutes(collection: Collection, slug: string): number {
+  const source = readFileSync(
+    path.join(collectionDir(collection), `${slug}.mdx`),
+    "utf8",
+  );
+  const words = source
+    .replace(/export const metadata = \{[\s\S]*?\n\}/, "")
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, "")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}
+
+export const getProjectSlugs = () => getSlugs("projects");
+export const getPostSlugs = () => getSlugs("writing");
+
+/**
+ * Params for a collection detail route. Cache Components requires generateStaticParams to return at least one
+ * entry, so an empty collection returns a placeholder slug that resolves to the 404 page.
+ */
+export function collectionStaticParams(slugs: string[]): { slug: string }[] {
+  return (slugs.length > 0 ? slugs : ["_none"]).map((slug) => ({ slug }));
 }
 
 export async function getProjects(): Promise<Project[]> {
@@ -139,9 +196,17 @@ export async function getProjects(): Promise<Project[]> {
   cacheLife("max");
   const projects = await Promise.all(
     getProjectSlugs().map(async (slug) => {
+      const file = `content/projects/${slug}.mdx`;
       const { metadata } = await import(`@/content/projects/${slug}.mdx`);
-      assertProjectMeta(slug, metadata);
-      return { ...metadata, slug };
+      assertFields(file, metadata, [
+        "title",
+        "summary",
+        "category",
+        "year",
+        "technologies",
+      ]);
+      assertOneOf(file, "category", metadata.category, projectCategories);
+      return { ...(metadata as ProjectMeta), slug };
     }),
   );
   return projects.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity));
@@ -149,4 +214,45 @@ export async function getProjects(): Promise<Project[]> {
 
 export async function getFeaturedProjects(): Promise<Project[]> {
   return (await getProjects()).filter((project) => project.featured);
+}
+
+/** The project plus its neighbours in listing order, for previous/next navigation. */
+export async function getProjectWithNeighbours(slug: string) {
+  const projects = await getProjects();
+  const index = projects.findIndex((project) => project.slug === slug);
+  if (index === -1) return null;
+  return {
+    project: projects[index],
+    previous: projects[index - 1] ?? null,
+    next: projects[index + 1] ?? null,
+  };
+}
+
+/** Newest first. */
+export async function getPosts(): Promise<Post[]> {
+  "use cache";
+  cacheLife("max");
+  const posts = await Promise.all(
+    getPostSlugs().map(async (slug) => {
+      const file = `content/writing/${slug}.mdx`;
+      const { metadata } = await import(`@/content/writing/${slug}.mdx`);
+      assertFields(file, metadata, ["title", "summary", "date", "category"]);
+      assertOneOf(file, "category", metadata.category, writingCategories);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(metadata.date)) {
+        throw new Error(
+          `${file}: date must be YYYY-MM-DD, got "${metadata.date}"`,
+        );
+      }
+      return {
+        ...(metadata as PostMeta),
+        slug,
+        readingMinutes: readingMinutes("writing", slug),
+      };
+    }),
+  );
+  return posts.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+export async function getPost(slug: string): Promise<Post | null> {
+  return (await getPosts()).find((post) => post.slug === slug) ?? null;
 }
