@@ -190,6 +190,115 @@
 }
 
 /*
+ * Animated R monogram in the header (components/layout/logo-mark.tsx): an electric-blue light trail and
+ * particle orbit the logo, and the tile glows softly. Logo-specific colours, taken from the logo artwork.
+ * Hover (or keyboard focus on the home link) strengthens the glow and scales the logo slightly.
+ */
+.logo-mark {
+  --logo-blue: #2f7bff;
+  --logo-glow: rgb(47 123 255 / 0.35);
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  transition: scale 300ms ease-out;
+}
+
+.logo-tile {
+  position: relative;
+  z-index: 1;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 10px 0 var(--logo-glow);
+  transition: box-shadow 300ms ease-out;
+}
+
+/* Twice the tile's size, centred on it, so the orbit can extend past the tile. */
+.logo-orbit-layer {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+}
+
+.logo-orbit-front {
+  z-index: 2;
+  clip-path: inset(
+    50% 0 0 0
+  ); /* lower half only: the part of the orbit in front of the logo */
+}
+
+/* A circle squashed and tilted into the logo's orbit ellipse. */
+.logo-orbit {
+  position: absolute;
+  inset: 3%;
+  rotate: -14deg;
+  scale: 1 0.42;
+}
+
+.logo-orbit-spin {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 2px var(--logo-blue));
+}
+
+.logo-orbit-spin circle {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.logo-orbit-track {
+  stroke: var(--logo-blue);
+  stroke-opacity: 0.12;
+  stroke-width: 1.5;
+}
+
+.logo-orbit-trail {
+  stroke: var(--logo-blue);
+  stroke-width: 3;
+}
+
+.logo-orbit-particle {
+  stroke: #e6f1ff;
+  stroke-width: 7;
+}
+
+.group:is(:hover, :focus-visible) .logo-mark {
+  scale: 1.08;
+}
+
+.group:is(:hover, :focus-visible) .logo-tile {
+  box-shadow: 0 0 22px 2px rgb(47 123 255 / 0.65);
+}
+
+@keyframes logo-orbit-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes logo-glow-pulse {
+  50% {
+    box-shadow: 0 0 16px 1px rgb(47 123 255 / 0.55);
+  }
+}
+
+/* Reduced motion: the trail stays still and the glow stays constant; the hover change remains. */
+@media (prefers-reduced-motion: no-preference) {
+  .logo-orbit-spin {
+    animation: logo-orbit-spin 3.6s linear infinite;
+  }
+
+  .logo-tile {
+    animation: logo-glow-pulse 3.6s ease-in-out infinite;
+  }
+
+  .group:is(:hover, :focus-visible) .logo-tile {
+    animation-play-state: paused;
+  }
+}
+
+/*
  * Scroll reveal: elements fade and slide up as they enter the viewport. Pure CSS (scroll-driven animations);
  * browsers without support simply show the content. Disabled for reduced motion.
  */

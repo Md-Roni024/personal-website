@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/site.config";
 import { getPostSlugs } from "@/lib/content";
 import { Container } from "@/components/ui/container";
+import { LogoMark } from "./logo-mark";
 import { SiteNav } from "./site-nav";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -20,14 +20,7 @@ export function SiteHeader() {
           href="/"
           className="group flex items-center gap-2 text-xl font-bold text-heading"
         >
-          <Image
-            src="/images/logo.png"
-            alt={siteConfig.name}
-            width={36}
-            height={36}
-            priority
-            className="size-9 rounded-xl ring-1 ring-white/10 transition-transform duration-300 group-hover:rotate-6"
-          />
+          <LogoMark alt={siteConfig.name} />
         </Link>
         <div className="flex items-center gap-4 lg:gap-6">
           <SiteNav items={items} cvPath={siteConfig.cvPath} />

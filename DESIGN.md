@@ -56,7 +56,7 @@ Section tones (`Section tone=…`): `default`, `tint`, `band` (card colour — C
 - **Projects filter** — `ProjectFilter` (client): segmented pill buttons by `platform` with counts; the only interactive control besides the nav.
 - **Tags** — small rounded chips, `primary/15` background, `accent` text.
 - **Header** — sticky, translucent background with blur; monogram + name left; links white → `accent` on hover/current; outlined "Resume" pill. Below `lg` a "Menu" button opens a full-screen native `<dialog>` (focus contained, Esc closes, focus restored). "Writing" is hidden until a post exists.
-- **Footer** — centred: gradient name, nav, round social icon buttons, copyright.
+- **Footer** — four columns (brand + headline, Explore, Connect, Get in touch with email and resume), thin gradient rule on top, bottom bar with copyright and back-to-top. Stacks on mobile; Explore and Connect sit side by side.
 - **Icons** — Lucide for UI; brand marks (GitHub, LinkedIn, YouTube, LeetCode, Codeforces) inlined from Simple Icons in `components/ui/brand-icon.tsx`. Icon-only links always have `aria-label`.
 
 ## 5. Motion
