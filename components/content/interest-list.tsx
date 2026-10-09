@@ -20,7 +20,7 @@ export function InterestList({
       <ul className="mt-5 space-y-5">
         {items.map((item) => (
           <li key={item.title} className="border-l-2 border-primary/60 pl-4">
-            <p className="font-semibold text-white">{item.title}</p>
+            <p className="font-semibold text-heading">{item.title}</p>
             {item.description && (
               <p className="mt-1 text-sm text-muted">{item.description}</p>
             )}
@@ -38,7 +38,7 @@ export function ExploringList({ topics }: { topics: readonly string[] }) {
       {topics.map((topic) => (
         <li
           key={topic}
-          className="reveal rounded-full border border-primary/60 bg-primary/10 px-5 py-2 font-medium text-white"
+          className="reveal rounded-full border border-primary/60 bg-primary/10 px-5 py-2 font-medium text-heading"
         >
           {topic}
         </li>
@@ -60,7 +60,7 @@ export function BeyondCodeList({
     <ul className="grid gap-6 sm:grid-cols-3">
       {items.map((item) => (
         <li key={item.title} className="reveal card-hover card p-6 text-center">
-          <Heading className="text-lg font-semibold text-white">
+          <Heading className="text-lg font-semibold text-heading">
             {item.title}
           </Heading>
           {item.description && (

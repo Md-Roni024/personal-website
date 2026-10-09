@@ -45,7 +45,7 @@ export default async function ProjectPage({
         eyebrow={
           <Link
             href="/projects"
-            className="transition-colors duration-200 hover:text-white"
+            className="transition-colors duration-200 hover:text-heading"
           >
             Projects
           </Link>
@@ -56,13 +56,13 @@ export default async function ProjectPage({
         <dl className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-x-10 gap-y-4 text-sm">
           <div>
             <dt className="text-subtle">Category</dt>
-            <dd className="mt-1 font-semibold text-white">
+            <dd className="mt-1 font-semibold text-heading">
               {project.category}
             </dd>
           </div>
           <div>
             <dt className="text-subtle">Date</dt>
-            <dd className="mt-1 font-semibold text-white">{project.year}</dd>
+            <dd className="mt-1 font-semibold text-heading">{project.year}</dd>
           </div>
         </dl>
         <TagList
@@ -99,7 +99,7 @@ export default async function ProjectPage({
             />
           </div>
         )}
-        <div className="mx-auto max-w-reading [&>h2:first-child]:mt-0">
+        <div className="[&>h2:first-child]:mt-0">
           <Content />
         </div>
       </Container>

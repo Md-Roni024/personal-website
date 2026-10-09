@@ -13,7 +13,7 @@ export function Introduction() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <div className="reveal">
           {lead && (
-            <p className="text-lg/relaxed text-white sm:text-xl/relaxed">
+            <p className="text-lg/relaxed text-heading sm:text-xl/relaxed">
               {lead}
             </p>
           )}

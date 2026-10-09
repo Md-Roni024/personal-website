@@ -44,7 +44,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
                   aria-current={current ? "page" : undefined}
                   className={cn(
                     "transition-colors duration-200 hover:text-accent",
-                    current ? "text-accent" : "text-white",
+                    current ? "text-accent" : "text-heading",
                   )}
                 >
                   {item.label}
@@ -69,7 +69,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
         type="button"
         onClick={() => dialogRef.current?.showModal()}
         aria-haspopup="dialog"
-        className="-mr-2 flex min-h-11 items-center gap-2 px-2 font-medium text-white lg:hidden"
+        className="-mr-2 flex min-h-11 items-center gap-2 px-2 font-medium text-heading lg:hidden"
       >
         <Menu aria-hidden="true" className="size-6" />
         <span className="sr-only sm:not-sr-only">Menu</span>
@@ -84,7 +84,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
           <button
             type="button"
             onClick={close}
-            className="-mr-2 flex min-h-11 items-center gap-2 px-2 font-medium text-white"
+            className="-mr-2 flex min-h-11 items-center gap-2 px-2 font-medium text-heading"
           >
             <X aria-hidden="true" className="size-6" />
             Close
@@ -99,7 +99,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
                 aria-current={pathname === "/" ? "page" : undefined}
                 className={cn(
                   "block py-4 text-2xl font-semibold transition-colors hover:text-accent",
-                  pathname === "/" ? "text-accent" : "text-white",
+                  pathname === "/" ? "text-accent" : "text-heading",
                 )}
               >
                 Home
@@ -115,7 +115,7 @@ export function SiteNav({ items, cvPath }: SiteNavProps) {
                     aria-current={current ? "page" : undefined}
                     className={cn(
                       "block py-4 text-2xl font-semibold transition-colors hover:text-accent",
-                      current ? "text-accent" : "text-white",
+                      current ? "text-accent" : "text-heading",
                     )}
                   >
                     {item.label}

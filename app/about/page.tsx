@@ -41,7 +41,9 @@ export default function AboutPage() {
               />
             )}
             <div className="relative mt-5 text-center">
-              <p className="text-2xl font-bold text-white">{siteConfig.name}</p>
+              <p className="text-2xl font-bold text-heading">
+                {siteConfig.name}
+              </p>
               <p className="mt-1 text-brand font-semibold">
                 {siteConfig.title}
               </p>
@@ -75,7 +77,7 @@ export default function AboutPage() {
           <ul className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
             {currentFocus.map((item) => (
               <li key={item.title} className="reveal card p-6">
-                <p className="font-semibold text-white">{item.title}</p>
+                <p className="font-semibold text-heading">{item.title}</p>
                 <p className="mt-2 text-sm/relaxed text-muted">
                   {item.description}
                 </p>

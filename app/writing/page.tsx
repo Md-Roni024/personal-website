@@ -25,7 +25,7 @@ export default async function WritingPage() {
         {posts.length === 0 ? (
           <p className="text-center text-muted">Nothing published yet.</p>
         ) : (
-          <ol className="mx-auto max-w-4xl divide-y divide-border border-y border-border">
+          <ol className="mx-auto max-w-5xl divide-y divide-border border-y border-border 2xl:max-w-6xl">
             {posts.map((post) => (
               <li key={post.slug}>
                 <article className="group relative grid gap-2 py-8 sm:grid-cols-[10rem_1fr] sm:gap-6">

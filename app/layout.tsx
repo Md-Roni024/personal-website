@@ -1,6 +1,7 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { siteConfig } from "@/site.config";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SkipLink } from "@/components/layout/skip-link";
@@ -16,12 +17,20 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+// Applies the saved theme before first paint so light-mode visitors never see a dark flash.
+const themeScript = `try{if(localStorage.getItem(${JSON.stringify(THEME_STORAGE_KEY)})==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={siteConfig.locale}
       className={`${poppins.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      // The theme script sets data-theme before React hydrates.
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <SkipLink />
         <SiteHeader />

@@ -43,7 +43,7 @@ export function ProjectFilter({ projects, platforms }: ProjectFilterProps) {
                 "inline-flex min-h-10 items-center gap-2 rounded-xl px-4 text-sm font-semibold transition-all duration-300",
                 selected
                   ? "bg-brand text-white shadow-[0_8px_24px_-10px_rgb(132_0_255/0.8)]"
-                  : "text-muted hover:bg-primary/15 hover:text-white",
+                  : "text-muted hover:bg-primary/15 hover:text-heading",
               )}
             >
               {option}

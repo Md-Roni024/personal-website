@@ -25,7 +25,7 @@ export function Hero() {
           >
             {siteConfig.name}
           </h1>
-          <p className="enter enter-delay-2 mt-4 text-2xl font-semibold text-white sm:text-3xl">
+          <p className="enter enter-delay-2 mt-4 text-2xl font-semibold text-heading sm:text-3xl">
             I am a <Typewriter words={roles} className="text-brand" />
           </p>
           <p className="enter enter-delay-3 mx-auto mt-6 max-w-xl text-lg/relaxed text-muted lg:mx-0">

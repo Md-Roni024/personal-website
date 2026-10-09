@@ -17,7 +17,7 @@ export function CertificationList({
                 <Award aria-hidden="true" className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-semibold text-white">
+                <h3 className="font-semibold text-heading">
                   {item.href ? (
                     <a
                       href={item.href}

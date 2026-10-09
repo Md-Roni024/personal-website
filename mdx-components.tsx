@@ -19,7 +19,7 @@ const components: MDXComponents = {
   h4: (props) => <h4 className="mt-8 mb-2 font-semibold" {...props} />,
   p: (props) => (
     <p
-      className="my-4 text-base/relaxed text-muted sm:text-lg/relaxed"
+      className="my-4 text-base/relaxed text-muted sm:text-lg/relaxed 2xl:text-xl/relaxed"
       {...props}
     />
   ),
@@ -37,7 +37,10 @@ const components: MDXComponents = {
     />
   ),
   li: (props) => (
-    <li className="pl-1 text-muted sm:text-lg/relaxed" {...props} />
+    <li
+      className="pl-1 text-muted sm:text-lg/relaxed 2xl:text-xl/relaxed"
+      {...props}
+    />
   ),
   blockquote: (props) => (
     <blockquote

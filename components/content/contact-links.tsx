@@ -28,7 +28,7 @@ export function ContactLinks() {
                 )}
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block font-semibold text-white">
+                <span className="block font-semibold text-heading">
                   {link.label}
                 </span>
                 {link.detail && (

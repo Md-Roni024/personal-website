@@ -2,8 +2,9 @@
 
 /*
  * Design tokens — see DESIGN.md. Components use these tokens, never raw colour values.
- * Dark theme only, following the owner's existing portfolio (deep navy + purple).
- * Text tokens meet WCAG AA (≥ 4.5:1) on `background`, `surface` and `surface-raised`.
+ * Dark theme is the default, following the owner's existing portfolio (deep navy + purple).
+ * Light theme: `data-theme="light"` on <html>, set by the navbar toggle (components/layout/theme-toggle.tsx).
+ * Text tokens meet WCAG AA (≥ 4.5:1) on `background`, `surface` and `surface-raised` in both themes.
  * `primary` (#854ce6) is for fills, borders and large display text only — use `accent` for small purple text.
  */
 
@@ -12,6 +13,7 @@
   --surface: #171721; /* cards */
   --surface-raised: #232334; /* chips, hover states */
   --foreground: #f2f2f7;
+  --heading: #ffffff;
   --muted: #b1b2b3;
   --subtle: #8e8ea6;
   --border: #2d2b45;
@@ -22,7 +24,28 @@
   --gradient-from: #8400ff;
   --gradient-to: #c800e0;
   --tint: #201e33; /* purple-tinted section background */
+  --header: rgb(
+    38 37 58 / 0.9
+  ); /* lighter than the page so the sticky bar stands out */
+  --header-shadow: 0 4px 24px rgb(0 0 0 / 0.35);
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --background: #f6f5fb;
+  --surface: #ffffff;
+  --surface-raised: #ece9f7;
+  --foreground: #2a2a38;
+  --heading: #14141f;
+  --muted: #4d4d5e;
+  --subtle: #66667a;
+  --border: #e0dcef;
+  --border-strong: #c7bdeb;
+  --accent: #6b2fd0;
+  --tint: #efeafb;
+  --header: rgb(255 255 255 / 0.9);
+  --header-shadow: 0 4px 24px rgb(60 40 120 / 0.08);
+  color-scheme: light;
 }
 
 /* Section tone that sits on the card colour (contact band, footer). Re-points `background` so children follow. */
@@ -38,6 +61,8 @@
   --color-surface-raised: var(--surface-raised);
   --color-tint: var(--tint);
   --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
+  --color-header: var(--header);
   --color-muted: var(--muted);
   --color-subtle: var(--subtle);
   --color-border: var(--border);
@@ -52,9 +77,9 @@
 
 @theme {
   /* Containers */
-  --container-reading: 42.5rem; /* 680px — long-form reading */
-  --container-content: 75rem; /* 1200px — default page width (matches the reference site) */
-  --container-wide: 85rem;
+  --container-reading: 52rem; /* 832px — long-form reading */
+  --container-content: 80rem; /* 1280px — default page width */
+  --container-wide: 90rem;
 
   /* Fluid display sizes (hero / page titles). Body sizes use Tailwind defaults. */
   --text-display: clamp(2.25rem, 1.5rem + 3.2vw, 3.5rem);
@@ -63,6 +88,16 @@
   --text-title: clamp(2rem, 1.5rem + 2vw, 2.75rem);
   --text-title--line-height: 1.2;
   --text-title--letter-spacing: -0.01em;
+}
+
+/* Large screens (≥1536px): widen containers so content doesn't sit in a
+   narrow strip with large empty margins. MDX body text grows to match. */
+@media (width >= 96rem) {
+  :root {
+    --container-reading: 64rem; /* 1024px */
+    --container-content: 90rem; /* 1440px */
+    --container-wide: 100rem;
+  }
 }
 
 /* Brand gradient (primary buttons, hero highlights). */
@@ -128,7 +163,7 @@
   h2,
   h3,
   h4 {
-    @apply text-balance text-white;
+    @apply text-balance text-heading;
   }
 
   p {

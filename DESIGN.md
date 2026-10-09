@@ -6,7 +6,7 @@ The visual language for the site. Consult before building any UI.
 
 Implementation: tokens and utilities in `app/globals.css`, fonts in `app/fonts.ts`, primitives in `components/ui/`. Live preview at `/design`.
 
-## 1. Colour (dark theme only)
+## 1. Colour (dark default, optional light theme)
 
 | Token | Value | Use |
 |---|---|---|
@@ -14,7 +14,9 @@ Implementation: tokens and utilities in `app/globals.css`, fonts in `app/fonts.t
 | `surface` | `#171721` | cards |
 | `surface-raised` | `#232334` | chips, raised states |
 | `tint` | `#201e33` | alternate section background (Skills, Beyond code, Certificates) |
-| `foreground` | `#f2f2f7` | body text (15.1:1). Headings are pure white. |
+| `foreground` | `#f2f2f7` | body text (15.1:1) |
+| `heading` | `#ffffff` | headings, nav links, emphasised text. Use `text-heading`, not `text-white` — `text-white` is only for text on purple fills. |
+| `header` | `rgb(38 37 58 / 0.9)` | sticky header bar — lighter than the page so it stands out |
 | `muted` | `#b1b2b3` | secondary text (7.9:1) |
 | `subtle` | `#8e8ea6` | metadata (5.3:1) |
 | `border` / `border-strong` | `#2d2b45` / `#4a3d7a` | hairlines / outlined controls |
@@ -23,6 +25,8 @@ Implementation: tokens and utilities in `app/globals.css`, fonts in `app/fonts.t
 | brand gradient | `#8400ff → #c800e0` (225°) | primary buttons, hero highlight, heading underline. End colour darkened from the reference's `#e600ff` so white text passes AA (≥ 4.6:1). |
 
 Ratios are against `background`; all text tokens also pass AA on `surface` and `surface-raised`. Re-check whenever a value changes.
+
+**Light theme** (owner request, 2026-10-09): visitors switch with the sun/moon toggle in the header; the choice is saved in `localStorage` and applied before first paint by the inline script in `app/layout.tsx`. Dark stays the default. Light values override the same tokens under `:root[data-theme="light"]` in `app/globals.css` (off-white page, white cards, near-black headings, `accent` darkened to `#6b2fd0` for AA on white). `primary` and the brand gradient are shared by both themes.
 
 Utilities: `bg-brand`, `text-brand` (gradient text — large text only), `card`, `card-hover`, `hero-glow`.
 Section tones (`Section tone=…`): `default`, `tint`, `band` (card colour — Contact section and footer).

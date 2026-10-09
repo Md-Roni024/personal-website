@@ -24,7 +24,7 @@ export function SiteFooter() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-white transition-colors duration-200 hover:text-accent"
+                  className="text-heading transition-colors duration-200 hover:text-accent"
                 >
                   {item.label}
                 </Link>
