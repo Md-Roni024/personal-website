@@ -14,7 +14,7 @@ export function Hero() {
 
   return (
     <section aria-labelledby="hero-heading" className="relative hero-glow">
-      <Container className="grid items-center gap-12 pt-12 pb-24 sm:pt-16 sm:pb-32 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pt-20 lg:pb-40">
+      <Container className="grid items-center gap-12 pt-12 pb-24 sm:pt-16 sm:pb-32 lg:grid-cols-[minmax(0,38rem)_auto] lg:justify-center lg:gap-16 lg:pt-20 lg:pb-40 xl:gap-24">
         <div className="order-2 text-center lg:order-1 lg:text-left">
           <p className="enter text-lg font-medium text-muted sm:text-xl">
             Hi, I am
@@ -55,7 +55,7 @@ export function Hero() {
         </div>
 
         {photo && (
-          <div className="enter order-1 flex justify-center lg:order-2 lg:justify-end">
+          <div className="enter order-1 flex justify-center lg:order-2">
             <div className="relative">
               <div
                 aria-hidden="true"
@@ -67,8 +67,8 @@ export function Hero() {
                 width={800}
                 height={945}
                 priority
-                sizes="(min-width: 1024px) 400px, (min-width: 640px) 300px, 224px"
-                className="relative size-56 rounded-full border-2 border-primary object-cover object-top sm:size-72 lg:size-[400px]"
+                sizes="(min-width: 1280px) 440px, (min-width: 1024px) 400px, (min-width: 640px) 300px, 224px"
+                className="relative size-56 rounded-full border-2 border-primary object-cover object-top sm:size-72 lg:size-[400px] xl:size-[440px]"
               />
             </div>
           </div>
