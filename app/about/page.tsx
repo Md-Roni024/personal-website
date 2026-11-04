@@ -34,8 +34,8 @@ export default function AboutPage() {
               <Image
                 src={photo}
                 alt={`Portrait of ${siteConfig.name}`}
-                width={652}
-                height={834}
+                width={800}
+                height={945}
                 sizes="(min-width: 1024px) 296px, 160px"
                 className="relative mx-auto size-40 rounded-full border-2 border-primary object-cover object-top shadow-[0_0_40px_rgb(132_0_255/0.35)] lg:size-44"
               />

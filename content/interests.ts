@@ -5,12 +5,12 @@ export const interests: Interests = {
   currentWork: [
     {
       title: "Web application development",
-      description: "Angular, TypeScript and REST APIs in production at BJIT.",
+      description: ".NET, C#, Blazor and PostgreSQL in production at BJIT.",
     },
     {
-      title: "Cross-platform apps",
+      title: "AI workflow automation",
       description:
-        "Responsive iOS and web apps with Angular and the Ionic framework.",
+        "Experimenting with LLMs, AI agents and MCP to automate repetitive engineering tasks.",
     },
     {
       title: "Machine learning projects",

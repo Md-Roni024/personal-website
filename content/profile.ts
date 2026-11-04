@@ -3,31 +3,31 @@ import type { Profile } from "@/lib/content";
 export const profile: Profile = {
   // DRAFT: "Software Engineer" added per owner; the other two are from the previous portfolio.
   roles: ["Software Engineer", "Web Developer", "Programmer"],
-  // DRAFT: positioning statement based on the current role and listed skills. Verify wording.
+  // Source: latest CV (professional summary), shortened.
   headline:
-    "Software Engineer at BJIT Limited, building web and cross-platform applications with Angular, TypeScript and Node.js — and exploring AI agents and developer tools.",
+    "Software Engineer at BJIT Ltd. with 1.5+ years of experience building and maintaining web applications with .NET, C# and PostgreSQL.",
   photo: "/images/profile.jpg",
-  // DRAFT: drafted from the CV and the current role. Verify wording.
+  // Source: latest CV (professional summary and work experience). DRAFT: wording — verify.
   introduction: [
-    "I am a software engineer who enjoys turning real problems into reliable, well-structured software. Day to day I build web applications with Angular and TypeScript, integrate REST APIs, and work in agile teams from requirements to release.",
-    "Before that I built cross-platform iOS and web apps with Angular and Ionic at ImpleVista, and worked on web, Android and machine-learning projects. I am currently exploring AI agents, MCP and software architecture.",
+    "I am a software engineer with 1.5+ years of experience developing and maintaining web applications using .NET, C# and PostgreSQL. I work mostly on backend development, system optimisation and legacy system migration, and I am passionate about building scalable solutions and using modern tools to improve development efficiency.",
+    "Before BJIT I was an intern software engineer at ImpleVista, building with Angular, Node.js and REST APIs. Today I am also exploring LLMs, AI agents and MCP, and experimenting with AI-based workflow automation for engineering tasks.",
   ],
-  // DRAFT: themes from PROJECT_PLAN.md and the current role. Replace with what you are actually focused on.
+  // DRAFT: based on the current role in the latest CV. Replace with what you are actually focused on.
   currentFocus: [
     {
-      title: "Production web apps",
+      title: ".NET web applications",
       description:
-        "Building and maintaining Angular and TypeScript applications at BJIT, with clean APIs and maintainable code.",
+        "Developing and maintaining web applications with .NET, C# and Blazor at BJIT.",
     },
     {
-      title: "AI agents & MCP",
+      title: "Legacy system migration",
       description:
-        "Learning how AI agents, agentic workflows and the Model Context Protocol can power better developer tools.",
+        "Helping migrate legacy applications to .NET to modernise and streamline enterprise systems.",
     },
     {
-      title: "Software architecture",
+      title: "AI & workflow automation",
       description:
-        "Studying system design and architecture patterns to build software that scales and stays easy to change.",
+        "Experimenting with LLMs, AI agents, MCP and AI-based workflow automation for repetitive engineering tasks.",
     },
   ],
 };

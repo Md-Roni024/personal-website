@@ -8,7 +8,7 @@ export const education: readonly EducationEntry[] = [
     start: "Jan 2019",
     end: "Sep 2024",
     summary:
-      "Formerly Bangabandhu Sheikh Mujibur Rahman Science & Technology University (BSMRSTU). CGPA 3.28. Languages: C/C++, Java, Python, SQL.",
+      "Formerly Bangabandhu Sheikh Mujibur Rahman Science & Technology University (BSMRSTU). CGPA 3.27. Languages: C/C++, Java, Python, SQL.",
     coursework: [
       "Data Structures",
       "Algorithms",

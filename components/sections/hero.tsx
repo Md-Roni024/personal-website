@@ -64,8 +64,8 @@ export function Hero() {
               <Image
                 src={photo}
                 alt={`Portrait of ${siteConfig.name}`}
-                width={652}
-                height={834}
+                width={800}
+                height={945}
                 priority
                 sizes="(min-width: 1024px) 400px, (min-width: 640px) 300px, 224px"
                 className="relative size-56 rounded-full border-2 border-primary object-cover object-top sm:size-72 lg:size-[400px]"

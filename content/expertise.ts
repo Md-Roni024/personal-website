@@ -1,53 +1,42 @@
-// Sources: previous portfolio and CV.
+// Source: latest CV (Nov 2026), "Skills" section.
 import type { ExpertiseCategory } from "@/lib/content";
 
 export const expertise: readonly ExpertiseCategory[] = [
   {
     name: "Languages",
-    items: ["TypeScript", "JavaScript", "C++", "C#", "Python", "Java"],
+    items: ["C#", "JavaScript", "Python", "C/C++"],
   },
   {
-    name: "Frontend",
+    name: "Web Technology",
+    items: ["Angular", "ASP.NET", "Blazor", "React.js", "Node.js"],
+  },
+  {
+    name: "UI / Styling",
+    items: ["HTML", "CSS", "Bootstrap", "Tailwind CSS"],
+  },
+  {
+    name: "ORM / Database",
+    items: ["MSSQL", "PostgreSQL", "Entity Framework"],
+  },
+  {
+    name: "Project Management",
+    items: ["Git", "GitHub", "Gerrit", "Jira"],
+  },
+  {
+    name: "AI & Automation",
     items: [
-      "Angular",
-      "React.js",
-      "Ionic",
-      "Redux",
-      "Tailwind CSS",
-      "Bootstrap",
-      "Material UI",
-      "HTML",
+      "LLMs",
+      "RAG",
+      "Agentic AI",
+      "AI Agent & Skills",
+      "MCP",
+      "Workflow Automation",
+      "LangChain",
+      "LangGraph",
     ],
   },
   {
-    name: "Backend",
-    items: [
-      "Node.js",
-      "Express.js",
-      "ASP.NET Core",
-      "Entity Framework",
-      "Flask",
-      "Scrapy",
-      "REST API",
-    ],
-  },
-  {
-    name: "Database",
-    items: ["PostgreSQL", "MSSQL", "MySQL", "MongoDB", "Firebase"],
-  },
-  {
-    name: "Machine Learning & AI",
-    items: [
-      "TensorFlow",
-      "Keras",
-      "scikit-learn",
-      "Jupyter",
-      "Google Colab",
-      "Ollama (Llama 2)",
-    ],
-  },
-  {
-    name: "Tools & Practices",
-    items: ["Git", "GitHub", "Docker", "Linux", "Postman", "Agile / Scrum"],
+    name: "Cloud & Deployment",
+    items: ["Azure", "Docker", "Linux"],
   },
 ];

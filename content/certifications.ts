@@ -1,4 +1,4 @@
-// Sources: previous portfolio and CV ("Problem-solving activities"). Most recent first.
+// Sources: latest CV (Nov 2026) — "Problem-solving activities" and "Courses and certificates" — and previous portfolio. Most recent first.
 import type { Certification } from "@/lib/content";
 
 export const certifications: readonly Certification[] = [
@@ -40,12 +40,14 @@ export const certifications: readonly Certification[] = [
       "Participated in the ICPC Asia Dhaka Regional Site Online Preliminary Contest in 2022 and 2023.",
   },
   {
-    title: "Introduction to Python",
-    issuer: "Analytics Vidhya",
-    date: "Jan 2024",
-    description:
-      "Basic Python course, completed for both academic fulfilment and learning Python.",
-    href: "https://courses.analyticsvidhya.com/certificates/zbd3nw7k7z",
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM SkillsBuild",
+    date: "Apr 2026",
+  },
+  {
+    title: "Information Security Training",
+    issuer: "BJIT Academy",
+    date: "Nov 2025",
   },
   {
     title: "SQL (Basic)",
@@ -56,19 +58,27 @@ export const certifications: readonly Certification[] = [
     href: "https://www.hackerrank.com/certificates/22f70f979035",
   },
   {
-    title: "Linux Fundamentals",
-    issuer: "Coursera",
-    date: "Jan 2024",
-    description:
-      "Essential Linux concepts and commands: system navigation, file management and permissions.",
-    href: "https://www.coursera.org/learn/linux-fundamentals",
-  },
-  {
     title: "Introduction to Agile Development and Scrum",
     issuer: "Coursera",
-    date: "Sep 2023",
+    date: "Dec 2023",
     description:
       "Agile methodologies with a focus on Scrum: iterative development, sprints and team roles.",
     href: "https://www.coursera.org/lecture/agile-development-and-scrum/the-3-roles-of-scrum-POMsh",
+  },
+  {
+    title: "Introduction to Python",
+    issuer: "Analytics Vidhya",
+    date: "Sep 2023",
+    description:
+      "Basic Python course, completed for both academic fulfilment and learning Python.",
+    href: "https://courses.analyticsvidhya.com/certificates/zbd3nw7k7z",
+  },
+  {
+    title: "Linux Fundamentals",
+    issuer: "Coursera",
+    date: "Mar 2022",
+    description:
+      "Essential Linux concepts and commands: system navigation, file management and permissions.",
+    href: "https://www.coursera.org/learn/linux-fundamentals",
   },
 ];

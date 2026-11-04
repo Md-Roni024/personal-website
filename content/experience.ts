@@ -1,63 +1,46 @@
-// Most recent first. Sources: previous portfolio and CV (Drive). Entries marked DRAFT are not verified.
+// Most recent first. Sources: latest CV (Nov 2026) and previous portfolio.
 import type { ExperienceEntry } from "@/lib/content";
 
 export const experience: readonly ExperienceEntry[] = [
-  // DRAFT: current role per owner ("Software Engineer at BJIT Ltd."). Start date unknown (20XX); highlights drafted.
+  // Source: latest CV.
   {
-    organization: "BJIT Limited",
+    organization: "BJIT Ltd.",
     role: "Software Engineer",
-    start: "20XX",
+    start: "Aug 2025",
     location: "Dhaka, Bangladesh",
     highlights: [
-      "Build and maintain web applications with Angular and TypeScript, integrating REST APIs.",
-      "Work in an agile Scrum team across the full software development life cycle, from requirements to release.",
-      "Take part in code reviews and use Git/Gerrit for version control.",
+      "Developed and maintained web applications using .NET, C# and Blazor.",
+      "Worked on legacy application to .NET migration, helping modernise and streamline enterprise systems.",
+      "Utilised existing PostgreSQL database structures to perform data integration, testing, validation and application-side data handling.",
+      "Collaborated through Gerrit for code reviews, maintaining code quality, consistency and shared team standards.",
+      "Worked closely with a large team, including overseas collaborators, to support development processes, share findings and contribute to continuous improvement.",
+      "Explored and experimented with LLMs, AI Agents & Skills, and MCP to understand their application in modern software development.",
+      "Designed and experimented with AI-based workflow automation to improve development workflows and automate repetitive engineering tasks.",
     ],
     technologies: [
-      "Angular",
-      "TypeScript",
-      "REST API",
-      "Git",
+      ".NET",
+      "C#",
+      "Blazor",
+      "PostgreSQL",
       "Gerrit",
-      "Scrum",
+      "LLMs",
+      "AI Agents",
+      "MCP",
     ],
   },
-  // Source: CV. DRAFT: end date (20XX) — the CV says "Present", but the owner now works at BJIT.
+  // Source: latest CV.
   {
     organization: "ImpleVista BD Ltd.",
-    role: "Junior Software Engineer",
-    start: "Mar 2025",
-    end: "20XX",
-    location: "Dhaka, Bangladesh",
-    highlights: [
-      "Developed and maintained software solutions using Angular, Node.js, REST API, Firebase and Git.",
-      "Built responsive and high-performance cross-platform applications for iOS and Web using Angular, Tailwind CSS and the Ionic framework.",
-      "Participated in code reviews, debugging and software optimisation, resulting in a 20% increase in system search efficiency.",
-      "Integrated a third-party API (Google Maps) and handled real-time data processing for client-driven features.",
-    ],
-    technologies: [
-      "Angular",
-      "Ionic",
-      "Node.js",
-      "REST API",
-      "Firebase",
-      "Tailwind CSS",
-      "Google Maps API",
-      "Git",
-    ],
-  },
-  // Source: CV.
-  {
-    organization: "BJIT Limited",
     role: "Intern Software Engineer",
-    start: "Sep 2024",
-    end: "Dec 2024",
+    start: "Apr 2025",
+    end: "Aug 2025",
     location: "Dhaka, Bangladesh",
     highlights: [
-      "Learned TypeScript, Angular, REST API, Git/Gerrit and the Software Development Life Cycle (SDLC).",
-      "Learned and applied Scrum and agile methodology.",
+      "Developed and maintained software solutions using Angular, Node.js, REST API and Git.",
+      "Participated in code reviews, debugging and software optimisation efforts.",
+      "Integrated third-party APIs and handled real-time data processing for client-driven features.",
     ],
-    technologies: ["TypeScript", "Angular", "REST API", "Git", "Gerrit"],
+    technologies: ["Angular", "Node.js", "REST API", "Git"],
   },
   // Source: previous portfolio. TODO: add the organisation and your role.
   {
