@@ -31,12 +31,6 @@ export const education: readonly EducationEntry[] = [
       "Information & Communication Technology (ICT)",
     ],
   },
-  {
-    degree: "Secondary School Certificate (SSC)",
-    institution: "Maisaid P.M.A.G High School",
-    start: "Jan 2010",
-    end: "Mar 2015",
-  },
 ];
 
 // DRAFT: based on the ML projects and PROJECT_PLAN.md. Verify, or set to [] to hide the block.
